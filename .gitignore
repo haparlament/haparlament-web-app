@@ -1,4 +1,4 @@
-# Binaries for programs and plugins
+    # Binaries for programs and plugins
 *.exe
 *.exe~
 *.dll
@@ -14,3 +14,7 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 /.idea/
+/haparlament
+/ui/build/
+/ui/node_modules/
+/go.sum

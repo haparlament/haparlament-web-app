@@ -3,9 +3,9 @@ module democrathon.com/haparlament
 go 1.18
 
 require (
+	github.com/gin-gonic/contrib v0.0.0-20221130124618-7e01895a63f2
 	github.com/gin-gonic/gin v1.7.7
 	github.com/google/uuid v1.3.0
-	github.com/observiq/embeddable-react v0.0.0-20220422153434-974def2e87c2
 )
 
 require (

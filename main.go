@@ -1,6 +1,6 @@
 package main
 
-import "github.com/observiq/embeddable-react/api"
+import "democrathon.com/haparlament/api"
 
 func main() {
 	api.Start()
