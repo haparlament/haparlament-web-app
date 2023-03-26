@@ -7,4 +7,5 @@ then
 fi
 cd ..
 go mod tidy
-go build
+env GOOS=linux GOARCH=amd64 go build
+cp ./haparlament ./deploy/haparlament
