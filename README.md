@@ -1,4 +1,4 @@
-# embeddable-react
+# HA-Parlament 
 
 The applications - in this project was build based on [this article](https://observiq.com/blog/embed-react-in-golang/)
 
