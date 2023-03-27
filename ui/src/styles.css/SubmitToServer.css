@@ -1,0 +1,23 @@
+.lets-talk-div{
+width: fit-content;
+}
+
+.lets-talk-button{
+  width: 7.8rem;
+  margin: 3px;
+  height: 3rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: black;
+  color: rgb(244, 236, 236);
+  font-size: 1.1rem;
+  font-weight: 600;
+  
+}
+
+.pass-button{
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+}

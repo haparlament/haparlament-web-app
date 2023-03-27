@@ -1,0 +1,12 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-div{
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  
+}

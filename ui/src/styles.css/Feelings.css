@@ -1,0 +1,36 @@
+.feelings-div{
+  margin-bottom: 2rem;
+}
+
+.feeling-button{
+  /* background-color: red; */
+  outline: none;
+  border: none;
+  width: 4rem;
+  height: 1.8rem;
+  background-color: rgba(245, 221, 198, 0.854);
+  font-size: 1em;
+  border-radius: 22px;
+}
+
+.pressed{
+  background-color: rgb(199, 146, 96);
+  color: rgb(244, 236, 236);
+}
+
+.container-row-feelings{
+  
+display: flex;
+flex-direction: row-reverse;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+gap: 7px;
+  
+}
+
+.feelings-header{
+  direction: rtl;
+  text-align: center;
+  margin-bottom: 1rem;
+}
