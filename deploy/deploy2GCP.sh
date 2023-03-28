@@ -7,3 +7,5 @@ echo "Docker creation timestamp: $creation_date"
 docker build . --tag $app_name:"$creation_date"
 docker tag $app_name:"$creation_date" $repo_url/$app_name:"$creation_date"
 docker push $repo_url/$app_name:"$creation_date"
+#gcloud run services --project haparlament update haparlament tag="$creation_date"  --region=me-west1
+#gcloud run services --project haparlament update haparlament tag="$creation_date"  --region=europe-central2
