@@ -4,6 +4,9 @@ import Feelings from "./Feelings";
 import SubmitToServer from "./SubmitToServer";
 import data from "../../data/data";
 import "../../styles.css/PresetFeed.css";
+import OptionalPartner from "./OptionalPartner";
+import BeforeStart from "./BeforeStart";
+import Card from "../Card";
 
 function PresetFeed({ setWaiting }) {
   const user = data.user;
@@ -12,10 +15,7 @@ function PresetFeed({ setWaiting }) {
   const [optionalUserParagraph, setOptionalUserParagraph] = useState("");
 
   return (
-    <div className="container">
-      <div className="header-div">
-        <h1 className="header">הפרלמנט</h1>
-      </div>
+    <div className="big-card">
       <ImageContent setImgID={setImgID} />
       <Feelings
         selectedEmotionId={selectedEmotionId}

@@ -1,0 +1,20 @@
+.rules-div{
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  margin-top: 10vh;
+}
+
+.rules-p{
+  direction: rtl;
+  line-height: 23px;
+
+}
+
+.balbalbal{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  padding-bottom: 13px;
+}
+

@@ -29,4 +29,17 @@ const user = {
     "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375__340.png",
 };
 
+// const optionalPartner = {
+//   imgURL: ,
+// };
+
 export default { images, user };
+
+const exampleJson = {
+  ImageID: "levin2.jpeg",
+  Feeling: "שמח",
+  UserName: "שגיא בלכר",
+  PhoneNumber: "+972547669908",
+  Day: "ראשון",
+  HourRange: "08-10",
+};

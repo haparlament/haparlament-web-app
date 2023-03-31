@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import data from "../../data/data";
-import "../../styles.css/ImageContent.css";
+import data from "../data/data";
+import "../styles.css/ImageContent.css";
+import "../styles.css/ImageContentPreview.css";
 
-function ImageContent({ setImgID }) {
+function ImageContentPreview({ setImgID }) {
   const images = data.images;
   const [imgURL, setImgURL] = useState(null);
 
@@ -19,10 +20,10 @@ function ImageContent({ setImgID }) {
   };
 
   return (
-    <div className="img-div">
-      {imgURL && <img src={imgURL} className="img-content" alt="" />}
+    <div>
+      {imgURL && <img src={imgURL} className="img-content-preview" alt="" />}
     </div>
   );
 }
 
-export default ImageContent;
+export default ImageContentPreview;

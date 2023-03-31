@@ -1,0 +1,22 @@
+.header-div{
+  height: 7.5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.header{
+  margin: auto;
+}
+
+.profile-pic{
+  width: 35px;
+  height: 35px;
+  border-radius: 18px;
+  position: absolute;
+  margin-right: 14px;
+}
