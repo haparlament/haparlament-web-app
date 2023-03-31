@@ -4,7 +4,6 @@ from routers import users, sessions, images, moderators, session_request
 
 app = FastAPI()
 
-
 app.include_router(sessions.router, prefix="/api/v2/sessions")
 app.include_router(users.router, prefix="/api/v2/users")
 app.include_router(images.router, prefix="/api/v2/images")
