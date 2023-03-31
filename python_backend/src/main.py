@@ -11,11 +11,15 @@ app.include_router(images.router, prefix="/api/v2/images")
 app.include_router(sessions.router, prefix="/api/v2/sessions")
 app.include_router(session_request.router, prefix="/api/v2/session_request")
 
-app.mount("/", StaticFiles(directory="static"), name="static")
-# @app.get("/")
-# def index():
-#     try:
-#         with open("static/index.html") as f:
-#             response =  HTMLResponse(f.read())
-#     except:
-#         response = "Error"
+app.mount("/static", StaticFiles(directory="static/static"), name="static")
+
+@app.get("/")
+def index():
+    with open("static/index.html") as f:
+        response =  HTMLResponse(f.read())
+    return response
+@app.get("/asset-manifest.json")
+def assets():
+    with open("static/asset-manifest.json") as f:
+        response =  HTMLResponse(f.read())
+    return response
