@@ -1,9 +1,37 @@
 import React, { useState } from "react";
 // import "../../styles.css/DetailsForm.css";
+import { postSessionRequest } from "../utils/session_request";
 
 function ChooseTime() {
   const [day, setDay] = useState(null);
   const [hour, setHour] = useState(null);
+
+  const exampleJson = {
+    ImageID: "levin2.jpeg",
+    Feeling: "שמח",
+    UserName: "שגיא בלכר",
+    PhoneNumber: "+972547669908",
+    Day: "ראשון",
+    HourRange: "08-10",
+  };
+
+  const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  const hours = [
+    "בוקר 10:00-12:00",
+    "12:00-14:00 צהריים",
+    "ערב 18:00-20:00",
+    "לילה 20:00-22:00",
+  ];
+
+  const handleDay = (day) => {
+    setDay(day);
+    console.log(day);
+  };
+
+  const handleHour = (hour) => {
+    setHour(hour);
+    console.log(hour);
+  };
 
   return (
     <div className="big-card details-form-div bg-tp">
@@ -16,13 +44,11 @@ function ChooseTime() {
       </div>
 
       <div className="days-div">
-        <button>ראשון</button>
-        <button>שני</button>
-        <button>שלישי</button>
-        <button>רביעי</button>
-        <button>חמישי</button>
-        <button>שישי</button>
-        <button>שבת</button>
+        {days.map((day, i) => (
+          <button key={i} onClick={() => handleDay(day)}>
+            {day}
+          </button>
+        ))}
       </div>
       <div className="hours-div">
         <button>בוקר 12 עד 14</button>
@@ -36,6 +62,9 @@ function ChooseTime() {
         {/* <button>{LeftArrow}</button> */}
         {/* <button>{TwoLinesRight}</button> */}
       </div>
+      <button onClick={() => postSessionRequest(exampleJson)}>
+        יציאה לapi
+      </button>
     </div>
   );
 }

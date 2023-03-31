@@ -12,25 +12,38 @@ import DetailsForm from "./components/DetailsForm/DetailsForm";
 import ChooseTime from "./components/ChooseTime";
 
 function App() {
-  const user = null;
+  // const user = null;\
+  const initJsonObject = {
+    ImageID: "",
+    Feeling: "",
+    UserName: "",
+    PhoneNumber: "",
+    Day: "",
+    HourRange: "",
+  };
   const [waiting, setWaiting] = useState(false);
+  const [jsonObject, setjsonObject] = useState(initJsonObject);
   return (
-    // <div className="container">
-    //   <Header></Header>
-    //   <PresetFeed setWaiting={setWaiting} />
-    //   <Footer></Footer>
-    // </div>
-
     <div className="container">
       <Header></Header>
 
       <div className="body">
-        {/* <PresetFeed setWaiting={setWaiting} /> */}
-        {/* <OptionalPartner /> */}
-        {/* <BeforeStart /> */}
-        {/* <DetailsForm /> */}
-        <ChooseTime />
+        <PresetFeed setWaiting={setWaiting} setjsonObject={setjsonObject} />
+        {/* <OptionalPartner setjsonObject={setjsonObject} /> */}
+        {/* <BeforeStart setjsonObject={setjsonObject} /> */}
+        <DetailsForm setjsonObject={setjsonObject} />
+        <ChooseTime setjsonObject={setjsonObject} />
       </div>
+      {/* important */}
+      {/* <button
+        onClick={() =>
+          setjsonObject((prevState) => {
+            return { ...prevState, Day: "monday" };
+          })
+        }
+      >
+        try2
+      </button> */}
       <Footer></Footer>
     </div>
   );
