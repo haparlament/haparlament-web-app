@@ -114,7 +114,7 @@ function ChooseTime({ setjsonObject, jsonObject }) {
   const handleDay = (day) => {
     day.isPreesed = !day.isPreesed;
     setjsonObject((prevState) => {
-      return { ...prevState, Day: day };
+      return { ...prevState, Day: day.day };
     });
   };
 
@@ -171,7 +171,7 @@ function ChooseTime({ setjsonObject, jsonObject }) {
       </div>
 
       {/* <button onClick={() => postSessionRequest(jsonObject)}>שלח פרטים</button> */}
-      <div className="icons-div w">
+      <div className="send-details-div">
         <button
           className="send-details-button"
           type="submit"

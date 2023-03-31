@@ -79,3 +79,6 @@ font-size: 0.7rem;
 line-height: 23px;
 }
 
+button{
+  border: none;
+}
