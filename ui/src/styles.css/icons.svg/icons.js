@@ -65,7 +65,7 @@ export const LeftArrow = (
       fill="#3E3A37"
     />
     <path
-      d="M11.86 20.0001L27.3523 20.0001"
+      d="M11.8601 20.0001L27.3524 20.0001"
       stroke="white"
       stroke-width="2"
       stroke-linecap="round"
@@ -77,6 +77,53 @@ export const LeftArrow = (
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const TwoLinesRight = (
+  <svg
+    width="150"
+    height="4"
+    viewBox="0 0 150 4"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="150"
+      y="4.00006"
+      width="32"
+      height="4"
+      transform="rotate(-180 150 4.00006)"
+      fill="#3E3A37"
+    />
+    <rect
+      opacity="0.3"
+      x="110"
+      y="4.00006"
+      width="32"
+      height="4"
+      transform="rotate(-180 110 4.00006)"
+      fill="#3E3A37"
+    />
+  </svg>
+);
+
+export const TwoLinesLeft = (
+  <svg
+    width="32"
+    height="4"
+    viewBox="0 0 32 4"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="32"
+      y="4.00006"
+      width="32"
+      height="4"
+      transform="rotate(-180 32 4.00006)"
+      fill="#3E3A37"
     />
   </svg>
 );

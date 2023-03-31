@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./styles.css/App.css";
 import DetailsForm from "./components/DetailsForm/DetailsForm";
+import ChooseTime from "./components/ChooseTime";
 
 function App() {
   const user = null;
@@ -27,7 +28,8 @@ function App() {
         {/* <PresetFeed setWaiting={setWaiting} /> */}
         {/* <OptionalPartner /> */}
         {/* <BeforeStart /> */}
-        <DetailsForm />
+        {/* <DetailsForm /> */}
+        <ChooseTime />
       </div>
       <Footer></Footer>
     </div>

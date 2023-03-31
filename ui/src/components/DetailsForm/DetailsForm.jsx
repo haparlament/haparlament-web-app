@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../../styles.css/DetailsForm.css";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
+import { TwoLinesLeft } from "../../styles.css/icons.svg/icons";
+import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
 
 function DetailsForm() {
   const [name, setName] = useState("");
@@ -40,9 +42,12 @@ function DetailsForm() {
         />
         <br />
       </form>
-      <button type="submit" onClick={handleSubmit}>
-        {LeftArrow}
-      </button>
+      <div>
+        <button type="submit" onClick={handleSubmit}>
+          {LeftArrow}
+        </button>
+        <button>{TwoLinesRight}</button>
+      </div>
     </div>
   );
 }
