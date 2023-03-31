@@ -21,7 +21,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - "./frontend/ui:/app"
+      - "./ui:/app"
   nginx:
     container_name: nginx
     image: nginx:latest
