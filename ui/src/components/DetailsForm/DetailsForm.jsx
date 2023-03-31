@@ -3,17 +3,22 @@ import "../../styles.css/DetailsForm.css";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
 import { TwoLinesLeft } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
+import Popup from "reactjs-popup";
 
-function DetailsForm() {
+function DetailsForm({ setjsonObject, setSlide }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setPhone("972" + phone.substring(1));
-    const formData = { name, phone };
+    // const formData = { name, phone };
 
-    console.log(JSON.stringify(formData));
+    // console.log(JSON.stringify(formData));
+    setjsonObject((prevState) => {
+      return { ...prevState, PhoneNumber: phone, UserName: name };
+    });
+    setSlide(2);
   };
 
   return (
@@ -42,7 +47,7 @@ function DetailsForm() {
         />
         <br />
       </form>
-      <div>
+      <div className="icons-div">
         <button type="submit" onClick={handleSubmit}>
           {LeftArrow}
         </button>

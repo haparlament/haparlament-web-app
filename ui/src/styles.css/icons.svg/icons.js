@@ -51,6 +51,7 @@ export const whatDoYouThink = (
 
 export const LeftArrow = (
   <svg
+    className="left-arrow-icon"
     width="40"
     height="40"
     viewBox="0 0 40 40"
@@ -111,18 +112,27 @@ export const TwoLinesRight = (
 
 export const TwoLinesLeft = (
   <svg
-    width="32"
+    width="150"
     height="4"
-    viewBox="0 0 32 4"
+    viewBox="0 0 150 4"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect
-      x="32"
+      opacity="0.3"
+      x="150"
       y="4.00006"
       width="32"
       height="4"
-      transform="rotate(-180 32 4.00006)"
+      transform="rotate(-180 150 4.00006)"
+      fill="#3E3A37"
+    />
+    <rect
+      x="110"
+      y="4.00006"
+      width="32"
+      height="4"
+      transform="rotate(-180 110 4.00006)"
       fill="#3E3A37"
     />
   </svg>

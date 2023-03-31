@@ -8,24 +8,34 @@ function SubmitToServer({
   user,
   setWaiting,
   handlePass,
+  setjsonObject,
+  setSlide,
 }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedEmotionId) return;
 
     // Get the user ID from Google auth
-    const userID = user.id; // Replace with actual user ID from Google auth
+    // const userID = user.id; // Replace with actual user ID from Google auth
 
     // JSON creation
-    const jsonObject = {
-      userID,
-      imgID,
-      selectedEmotionId,
-      optionalUserParagraph,
-    };
-    setWaiting(true);
+    // const jsonObject = {
+    //   userID,
+    //   imgID,
+    //   selectedEmotionId,
+    //   optionalUserParagraph,
+    // };
+    // setWaiting(true);
     // Log the JSON object to the console
-    console.log(jsonObject);
+    // console.log(jsonObject);
+    setjsonObject((prevState) => {
+      return {
+        ...prevState,
+        ImageID: imgID.toString(),
+        Feeling: selectedEmotionId.toString(),
+      };
+    });
+    setSlide(1);
   };
 
   return (

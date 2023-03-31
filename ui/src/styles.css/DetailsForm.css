@@ -40,3 +40,17 @@
   opacity: 1;
   
 }
+
+.left-arrow-icon{
+  border: none;
+  
+}
+
+.icons-div{
+  margin-top: 17vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8rem;
+}

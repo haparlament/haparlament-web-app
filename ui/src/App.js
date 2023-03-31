@@ -11,6 +11,8 @@ import "./styles.css/App.css";
 import DetailsForm from "./components/DetailsForm/DetailsForm";
 import ChooseTime from "./components/ChooseTime";
 
+import { Link, Route, Routes } from "react-router-dom";
+
 function App() {
   // const user = null;\
   const initJsonObject = {
@@ -23,29 +25,37 @@ function App() {
   };
   const [waiting, setWaiting] = useState(false);
   const [jsonObject, setjsonObject] = useState(initJsonObject);
-  return (
-    <div className="container">
-      <Header></Header>
 
-      <div className="body">
-        <PresetFeed setWaiting={setWaiting} setjsonObject={setjsonObject} />
-        {/* <OptionalPartner setjsonObject={setjsonObject} /> */}
-        {/* <BeforeStart setjsonObject={setjsonObject} /> */}
-        <DetailsForm setjsonObject={setjsonObject} />
-        <ChooseTime setjsonObject={setjsonObject} />
+  const [slide, setSlide] = useState(0);
+  return (
+    <>
+      <div className="container">
+        <Header></Header>
+
+        <div className="body">
+          {slide == 0 && (
+            <PresetFeed
+              setWaiting={setWaiting}
+              setjsonObject={setjsonObject}
+              setSlide={setSlide}
+            />
+          )}
+          {/* {<OptionalPartner setjsonObject={setjsonObject} />} */}
+          {/* <BeforeStart setjsonObject={setjsonObject} /> */}
+          {slide == 1 && (
+            <DetailsForm setjsonObject={setjsonObject} setSlide={setSlide} />
+          )}
+          {slide == 2 && (
+            <ChooseTime
+              setjsonObject={setjsonObject}
+              jsonObject={jsonObject}
+              setSlide={setSlide}
+            />
+          )}
+        </div>
+        <Footer></Footer>
       </div>
-      {/* important */}
-      {/* <button
-        onClick={() =>
-          setjsonObject((prevState) => {
-            return { ...prevState, Day: "monday" };
-          })
-        }
-      >
-        try2
-      </button> */}
-      <Footer></Footer>
-    </div>
+    </>
   );
 }
 

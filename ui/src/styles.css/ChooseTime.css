@@ -1,0 +1,77 @@
+.jc-sb{
+  /* justify-content: space-between; */
+}
+
+.mb{
+  margin-bottom: 7vh;
+}
+
+.days-div{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 3vh;
+}
+
+.time-buttons-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 7px;
+    direction: rtl;
+
+}
+
+.time-button{
+  background-color: white;
+  outline: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  direction: rtl;
+  padding: 4px 18px;
+  gap: 6px;
+
+  width: 80px;
+  height: 34px;
+
+  background: #FFFFFF;
+  border-radius: 22px;
+  width: fit-content;
+  font-size: 18px;
+line-height: 24px;
+}
+.time-button-pressed{
+  background-color: #AE9979;
+  color: white;
+}
+
+.time-header{
+  direction: rtl;
+  width: auto;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.send-details-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  /* gap: 10px; */
+
+  width: 130px;
+  height: 56px;
+
+  background: #222222;
+  border-radius: 16px;
+  color: white;
+}
+
+.w{
+}

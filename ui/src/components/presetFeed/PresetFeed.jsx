@@ -8,7 +8,7 @@ import OptionalPartner from "./OptionalPartner";
 import BeforeStart from "./BeforeStart";
 import Card from "../Card";
 
-function PresetFeed({ setWaiting }) {
+function PresetFeed({ setWaiting, setjsonObject, setSlide }) {
   const user = data.user;
   const [imgID, setImgID] = useState(null);
   const [selectedEmotionId, setSelectedEmotionId] = useState(null);
@@ -29,6 +29,8 @@ function PresetFeed({ setWaiting }) {
         optionalUserParagraph={optionalUserParagraph}
         user={user}
         setWaiting={setWaiting}
+        setjsonObject={setjsonObject}
+        setSlide={setSlide}
       />
     </div>
   );
