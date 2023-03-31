@@ -22,7 +22,7 @@ async function postData(url = "", data = {}) {
       },
       //redirect: "follow", // manual, *follow, error
       //referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
+      body: data, // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
   }
@@ -30,6 +30,9 @@ async function postData(url = "", data = {}) {
   
 
 
-function postSessionRequest(sessionRequest) {
-    return postData("localhost:8000/v2/", sessionRequest);
+export function postSessionRequest(sessionRequest) {
+    let json =  JSON.stringify(sessionRequest);
+    console.log(json);
+    return postData("/api/v2/session_request/", json);
 }
+// export  postSessionRequest;
