@@ -1,0 +1,11 @@
+version: "3"
+services:
+  backend:
+    container_name: backend
+    hostname: backend
+    image: me-west1-docker.pkg.dev/haparlament/haparlament-repo/haparlament:${TAG}
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"

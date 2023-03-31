@@ -1,0 +1,33 @@
+version: "3"
+services:
+  backend:
+    container_name: backend
+    hostname: backend
+    image: me-west1-docker.pkg.dev/haparlament/haparlament-repo/backend:local
+    build: 
+      context: python_backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./backend/src:/app"
+  ui:
+    hostname: ui
+    container_name: ui
+    image: me-west1-docker.pkg.dev/haparlament/haparlament-repo/ui:local
+    build: 
+      context: ui
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend/ui:/app"
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./conf/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8001:8001
+
+  
