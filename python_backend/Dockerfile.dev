@@ -1,0 +1,7 @@
+FROM python:3.9.7-slim-buster
+RUN mkdir /app
+WORKDIR /app
+COPY python_backend/requirements.txt /app
+RUN pip install -r requirements.txt
+VOLUME [ "/app" ]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

@@ -6,10 +6,6 @@ function ImageContent({ setImgID }) {
   const images = data.images;
   const [imgURL, setImgURL] = useState(null);
 
-  const tryFunc = () => {
-    console.log("try func pressed!");
-  };
-
   function getRandomImgUrl(images) {
     const randomIndex = Math.floor(Math.random() * images.length);
     setImgID(randomIndex);

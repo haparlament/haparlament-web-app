@@ -1,0 +1,60 @@
+import React, { useState } from "react";
+import "../../styles.css/DetailsForm.css";
+import { LeftArrow } from "../../styles.css/icons.svg/icons";
+import { TwoLinesLeft } from "../../styles.css/icons.svg/icons";
+import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
+import Popup from "reactjs-popup";
+
+function DetailsForm({ setjsonObject, setSlide }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPhone("972" + phone.substring(1));
+    // const formData = { name, phone };
+
+    // console.log(JSON.stringify(formData));
+    setjsonObject((prevState) => {
+      return { ...prevState, PhoneNumber: phone, UserName: name };
+    });
+    setSlide(2);
+  };
+
+  return (
+    <div className="big-card details-form-div bg-tp">
+      <div className="details-form-headers">
+        <h1>בואו נדבר</h1>
+        <h4>מלא פרטים כדי שנוכל ליצור איתך קשר</h4>
+      </div>
+      <form className="details-form-form" onSubmit={handleSubmit}>
+        <input
+          id="name"
+          className="deatils-inputs"
+          placeholder="שם פרטי ושם משפחה"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <br />
+        <input
+          className="deatils-inputs"
+          id="phone"
+          placeholder="מספר טלפון"
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <br />
+      </form>
+      <div className="icons-div">
+        <button type="submit" onClick={handleSubmit}>
+          {LeftArrow}
+        </button>
+        <button>{TwoLinesRight}</button>
+      </div>
+    </div>
+  );
+}
+
+export default DetailsForm;

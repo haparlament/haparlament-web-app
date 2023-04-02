@@ -11,10 +11,14 @@ img {
   margin: 0 auto; /* Center the image horizontally */
   background-size: center;
   object-fit:cover;
-    border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+
   
 
 
   /* border-radius; */
+}
+
+.img-content{
+    border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }

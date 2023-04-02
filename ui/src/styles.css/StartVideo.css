@@ -1,0 +1,13 @@
+.start-video{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-video-button{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 7px;
+  
+}

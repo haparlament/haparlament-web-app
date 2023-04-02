@@ -1,0 +1,44 @@
+.partner-opinion{
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  align-items: center;
+  
+  /* gap: 10px; */
+  /* justify-content: center; */
+  justify-content:center;
+  gap: 20px;
+  height: 11rem;
+}
+
+
+.partner-opinion-div{
+  display: flex;
+  flex-direction: column;
+  width: 6rem;
+  height: 6rem;
+  direction: rtl;
+  
+  
+}
+
+.partner-profile-img{
+  width: 7.7rem;
+  height: 7.7rem;
+  background-color: purple;
+  border-radius: 4rem;
+  margin: 0px 0px 0px 0px; /* wtf */
+}
+
+.partner-opinion-span{
+  font-size: 16px;
+  direction: rtl;
+  line-height:23px;
+  margin-bottom: 5px;
+}
+
+
+.stikcy-bottom{
+  position: sticky;
+  bottom: 0;
+}
