@@ -24,3 +24,4 @@ build
 .firebase/
 .firebaserc
 
+.DS_Store

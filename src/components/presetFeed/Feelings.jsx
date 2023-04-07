@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import "../../styles.css/Feelings.css";
+import SubmitFeelings from "./SubmitFeelings";
 
-function Feelings({
-  selectedEmotionId,
-  setSelectedEmotionId,
-  optionalUserParagraph,
-  setOptionalUserParagraph,
-}) {
+function Feelings({ selectedEmotionId, setSelectedEmotionId }) {
   const emotions = [
     { id: 1, label: "כעס" },
     { id: 2, label: "תקווה" },
@@ -21,10 +17,6 @@ function Feelings({
   const handleEmotionClick = (e, id) => {
     e.preventDefault();
     setSelectedEmotionId(id);
-  };
-
-  const handleInputChange = (e) => {
-    setOptionalUserParagraph(e.target.value);
   };
 
   return (

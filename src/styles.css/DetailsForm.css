@@ -1,7 +1,6 @@
 .details-form-div{
   display: flex;
   flex-direction: column;
-  /* background-color: red; */
 }
 
 .details-form-headers{
@@ -11,7 +10,7 @@
   align-items: center;
   direction: rtl;
   gap: 10px;
-  margin-top: 15vh;
+  margin-top: 8.5vh;
   width: 75%;
 }
 
@@ -38,12 +37,10 @@
   border-radius: 10px;
   background-color: white;
   opacity: 1;
-  
 }
 
 .left-arrow-icon{
   border: none;
-  
 }
 
 .icons-div{

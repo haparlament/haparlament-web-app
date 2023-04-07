@@ -1,8 +1,7 @@
 .lets-talk-div{
-width: fit-content;
-background-color: transparent;
-margin-bottom: 1.2rem;
-
+  width: fit-content;
+  background-color: transparent;
+  margin-bottom: 1.2rem;
 }
 
 .lets-talk-button{
@@ -17,7 +16,10 @@ margin-bottom: 1.2rem;
   color: #FFFFFF;;
   font-size: 1.1rem;
   font-weight: 600;
-  
+}
+
+.button-disabled{
+  color: rgb(88, 88, 88)
 }
 
 .pass-button{

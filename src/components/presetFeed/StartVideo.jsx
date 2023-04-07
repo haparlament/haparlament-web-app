@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles.css/SubmitToServer.css";
+import "../../styles.css/SubmitFeelings.css";
 import "../../styles.css/StartVideo.css";
 
 function StartVideo() {

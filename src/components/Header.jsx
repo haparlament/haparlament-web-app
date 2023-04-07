@@ -5,7 +5,7 @@ import Profilepic from "../styles.css/images/profilepic.jpeg";
 function Header() {
   return (
     <header className="header-div">
-      <h1 className="header">הפרלמנט</h1>
+      <h3 className="header">הפרלמנט</h3>
       <img className="profile-pic" src={Profilepic} alt="" />
     </header>
   );

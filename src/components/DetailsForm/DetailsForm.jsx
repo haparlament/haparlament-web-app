@@ -1,24 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles.css/DetailsForm.css";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
-import { TwoLinesLeft } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
-import Popup from "reactjs-popup";
 
-function DetailsForm({ setjsonObject, setSlide }) {
+function DetailsForm({ setjsonObject, setSlide, slide }) {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setPhone("972" + phone.substring(1));
-    // const formData = { name, phone };
 
-    // console.log(JSON.stringify(formData));
     setjsonObject((prevState) => {
       return { ...prevState, PhoneNumber: phone, UserName: name };
     });
-    setSlide(2);
+    setSlide(slide + 1);
+    navigate("/ChooseTime");
   };
 
   return (

@@ -3,14 +3,10 @@
   width: 100%;
   flex-direction: row-reverse;
   align-items: center;
-  
-  /* gap: 10px; */
-  /* justify-content: center; */
   justify-content:center;
   gap: 20px;
   height: 11rem;
 }
-
 
 .partner-opinion-div{
   display: flex;
@@ -18,8 +14,6 @@
   width: 6rem;
   height: 6rem;
   direction: rtl;
-  
-  
 }
 
 .partner-profile-img{

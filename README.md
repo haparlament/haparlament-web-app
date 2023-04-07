@@ -1,10 +1,9 @@
 # HA-Parlament 
 
-The applications - in this project was build based on [this article](https://observiq.com/blog/embed-react-in-golang/)
+Frontend and backend of the Parlament app.
 
 ### Guidelines
 - Use node 16.20.0-lts
-- Work in single branch 
 - Don't push code without ensuring it is working properly
 
 ### Technologies
@@ -27,9 +26,16 @@ The project is based on Firebase thus takes the repo structure from Google's Fir
 
 #### Backend
 
-1. `npm run serve`
-2. `npm run deploy`
+From `functions` folder:
+
+1. `npm install`
+2. `npm run serve`
+3. `npm run deploy`
 
 #### Frontend
-1. `npm start`
-2. `firebase deploy --only hosting`
+
+From the root folder:
+
+1. `npm install`
+2. `npm start`
+3. `firebase deploy --only hosting`

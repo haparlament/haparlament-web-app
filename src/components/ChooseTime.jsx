@@ -1,101 +1,13 @@
-// import React, { useState } from "react";
-// // import "../../styles.css/DetailsForm.css";
-// import { postSessionRequest } from "../utils/session_request";
-
-// function ChooseTime({ setjsonObject, jsonObject }) {
-//   const [day, setDay] = useState(null);
-//   const [hour, setHour] = useState(null);
-
-//   const exampleJson = {
-//     ImageID: "levin2.jpeg",
-//     Feeling: "שמח",
-//     UserName: "שגיא בלכר",
-//     PhoneNumber: "+972547669908",
-//     Day: "ראשון",
-//     HourRange: "08-10",
-//   };
-
-//   const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
-//   const hours = [
-//     "בוקר 10:00-12:00",
-//     "12:00-14:00 צהריים",
-//     "ערב 18:00-20:00",
-//     "לילה 20:00-22:00",
-//   ];
-
-//   const handleDay = (day) => {
-//     setjsonObject((prevState) => {
-//       return { ...prevState, Day: day };
-//     });
-//   };
-
-//   const handleHour = (hour) => {
-//     setjsonObject((prevState) => {
-//       return { ...prevState, HourRange: hour };
-//     });
-//   };
-
-//   return (
-//     <div className="big-card details-form-div bg-tp">
-//       <div className="details-form-headers">
-//         <h1>מתי נוח לך?</h1>
-//         <h4>
-// כדי שנוכל להתאים לך את האדם הנכון לשיחה בחר את הזמנים שבהם תהיה זמין
-// לשיחה קצרה ומרתקת */
-//         </h4>
-//       </div>
-
-//       <div className="days-div">
-//         {days.map((day, i) => (
-//           <button key={i} onClick={() => handleDay(day)}>
-//             {day}
-//           </button>
-//         ))}
-//       </div>
-//       <div className="hours-div">
-//         {hours.map((hour, i) => (
-//           <button key={i} onClick={() => handleHour(hour)}>
-//             {hour}
-//           </button>
-//         ))}
-//       </div>
-
-//       <div>
-//         {/* <button>{LeftArrow}</button> */}
-//         {/* <button>{TwoLinesRight}</button> */}
-//       </div>
-//       <button onClick={() => postSessionRequest(jsonObject)}>יציאה לapi</button>
-//     </div>
-//   );
-// }
-
-// export default ChooseTime;
-
-// import React, { useState } from "react";
-// // import "../../styles.css/DetailsForm.css";
-// import { postSessionRequest } from "../utils/session_request";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Popup from "../components/Popup";
 import "../../src/styles.css/ChooseTime.css";
 import { TwoLinesLeft } from "../styles.css/icons.svg/icons";
 import { postSessionRequest } from "../utils/session_request";
 
-// import "../../styles.css/DetailsForm.css";
-// import { LeftArrow } from "../../styles.css/icons.svg/icons";
-// import { TwoLinesLeft } from "../../styles.css/icons.svg/icons";
-// import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
-
-function ChooseTime({ setjsonObject, jsonObject }) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-
-  // const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
-  // const hours = [
-  //   "בוקר 10:00-12:00",
-  //   "12:00-14:00 צהריים",
-  //   "ערב 18:00-20:00",
-  //   "לילה 20:00-22:00",
-  // ];
-  const [days, setDays] = useState([
+function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
+  const navigate = useNavigate();
+  const [days] = useState([
     { day: "ראשון", isPreesed: false },
     { day: "שני", isPreesed: false },
     { day: "שלישי", isPreesed: false },
@@ -104,9 +16,10 @@ function ChooseTime({ setjsonObject, jsonObject }) {
     { day: "שישי", isPreesed: false },
     { day: "שבת", isPreesed: false },
   ]);
-  const [hours, setHours] = useState([
+
+  const [hours] = useState([
     { hour: "בוקר 10:00-12:00", isPreesed: false },
-    { hour: "12:00-14:00 צהריים", isPreesed: false },
+    { hour: "צהריים 10:00-12:00", isPreesed: false },
     { hour: "ערב 18:00-20:00", isPreesed: false },
     { hour: "לילה 20:00-22:00", isPreesed: false },
   ]);
@@ -123,6 +36,35 @@ function ChooseTime({ setjsonObject, jsonObject }) {
     setjsonObject((prevState) => {
       return { ...prevState, HourRange: hour.hour };
     });
+  };
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [showChooseTimePopUp, setShowChooseTimePopUp] = useState(false);
+
+  const handleConfirm = () => {
+    console.log("Confirmed!");
+    setShowPopup(false);
+    setSlide(0);
+    navigate("/ImageContent");
+  };
+
+  const handleCancel = () => {
+    console.log("Canceled!");
+    setShowPopup(false);
+  };
+
+  const handleChooseTime = () => {
+    setShowChooseTimePopUp(false);
+  };
+
+  const handleSubmit = (jsonObject) => {
+    if (jsonObject.HourRange === "") {
+      setShowChooseTimePopUp(true);
+    } else {
+      console.log("sagy log: ", jsonObject);
+      postSessionRequest(jsonObject);
+      setShowPopup(true);
+    }
   };
 
   return (
@@ -156,7 +98,6 @@ function ChooseTime({ setjsonObject, jsonObject }) {
           <div className="time-buttons-div">
             {hours.map((hour, i) => (
               <button
-                // className="time-button"
                 className={`time-button ${
                   hour.isPreesed ? "time-button-pressed" : null
                 }`}
@@ -170,16 +111,40 @@ function ChooseTime({ setjsonObject, jsonObject }) {
         </div>
       </div>
 
-      {/* <button onClick={() => postSessionRequest(jsonObject)}>שלח פרטים</button> */}
       <div className="send-details-div">
         <button
           className="send-details-button"
           type="submit"
-          onClick={() => postSessionRequest(jsonObject)}
+          onClick={() => handleSubmit(jsonObject)}
         >
           שלח פרטים
         </button>
         <button>{TwoLinesLeft}</button>
+      </div>
+      <div>
+        {showPopup && (
+          <>
+            <div className="darken"></div>
+            <Popup
+              title="מעולה! פרטיך נשלחו"
+              text="בקרוב ניצור איתך קשר בוואטסאפ ונקשר אותך לשיחה עם אדם עם תחושות שונות בנושא שבחרת"
+              handleConfirm={handleConfirm}
+              handleCancel={handleCancel}
+              keepCancelButton={true}
+            />
+          </>
+        )}
+        {showChooseTimePopUp && (
+          <>
+            <div className="darken"></div>
+            <Popup
+              title="אנא בחר זמן שבו תהייה פנוי לשיחה"
+              text="כדי שנוכל ליצור איתך קשר בזמן שמתאים לך"
+              handleConfirm={handleChooseTime}
+              handleCancel={handleChooseTime}
+            />
+          </>
+        )}
       </div>
     </div>
   );
