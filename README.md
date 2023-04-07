@@ -3,18 +3,33 @@
 The applications - in this project was build based on [this article](https://observiq.com/blog/embed-react-in-golang/)
 
 ### Guidelines
-- Always use the latest Go version
+- Use node 16.20.0-lts
 - Work in single branch 
 - Don't push code without ensuring it is working properly
 
-### Deployment 
-Use the Deployment folder for
-1. Building the client side code by running `build.client.sh`
-   The script generates static files into `ui/build` folder that later pushed into the Go app
-<br  />
+### Technologies
+- Firebase
+- Node/Express
+- React
 
+### Repo Structure 
+The project is based on Firebase thus takes the repo structure from Google's Firebase best practices.
 
-2. Building the server side code by running `build.server.sh`
-   This script build the app for Linux environment. If you want to build it for different OS you need to look for `env GOOS=linux GOARCH=amd64` and replace per your need. Environment variables can be found [here](https://www.digitalocean.com/community/tutorials/how-to-build-go-executables-for-multiple-platforms-on-ubuntu-16-04)  
+1. Backend is located under `functions` and has a seperate `package.json`. It is an Express app built on top of Firebase cloud functions.
+2. Frontend is located under `src` and is a React app which is hosted via Firebase hosting service.
 
-*Note that the folder you are executing the build should be the `deploy` folder* 
+### Development
+
+1. make sure you are running on node16.20.0-lts
+2. install firebase tools globally `npm install -g firebase-tools`
+3. you should make sure you are added to haparlament project on firebase and receive required credentials.
+4. `firebase init emulators` answer all questions with suggested values.
+
+#### Backend
+
+1. `npm run serve`
+2. `npm run deploy`
+
+#### Frontend
+1. `npm start`
+2. `firebase deploy --only hosting`

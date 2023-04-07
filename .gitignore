@@ -14,9 +14,13 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 /.idea/
-/haparlament
-/ui/build/
-/ui/node_modules/
-/go.sum
-/deploy/haparlament
-python_backend/src/__pycache__/main.cpython-39.pyc
+
+# React App
+node_modules
+build
+*debug.log
+
+# Firebase
+.firebase/
+.firebaserc
+

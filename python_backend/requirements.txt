@@ -1,3 +1,0 @@
-airtable-python-wrapper
-fastapi
-uvicorn
