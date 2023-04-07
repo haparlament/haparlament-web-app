@@ -4,7 +4,9 @@ Frontend and backend of the Parlament app.
 
 ### Guidelines
 - Use node 16.20.0-lts
-- Please work on your features in separate branches, and create a new Pull request when you 
+- Please work on your features in separate branches, and create a new Pull request when you want to merge to main branch.
+- If PR has significant changes, please request approval from the core team.
+- Try to keep PR small and single Purpose.
 - Don't push code without ensuring it is working properly
 
 ### Technologies
