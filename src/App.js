@@ -12,12 +12,12 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const initJsonObject = {
-    ImageID: "",
-    Feeling: "",
-    UserName: "",
-    PhoneNumber: "",
-    Day: "",
-    HourRange: "",
+    imageId: "",
+    feeling: "",
+    username: "",
+    phoneNumber: "",
+    day: "",
+    hourRange: "",
   };
 
   const [jsonObject, setjsonObject] = useState(initJsonObject);

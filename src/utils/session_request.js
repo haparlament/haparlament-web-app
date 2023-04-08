@@ -1,11 +1,11 @@
 class SessionRequest {
-    constructor(ImageID, Feeling, UserName, PhoneNumber, Day, HourRange) {
-      this.ImageID = ImageID;
-      this.Feeling = Feeling;
-      this.UserName = UserName;
-      this.PhoneNumber = PhoneNumber;
-      this.Day = Day;
-      this.HourRange = HourRange;
+    constructor(imageId, feeling, username, phoneNumber, day, hourRange) {
+      this.imageId = imageId;
+      this.feeling = feeling;
+      this.username = username;
+      this.phoneNumber = phoneNumber;
+      this.day = day;
+      this.hourRange = hourRange;
     }
   }  
 
@@ -34,6 +34,6 @@ async function postData(url = "", data = {}) {
 export function postSessionRequest(sessionRequest) {
     let json =  JSON.stringify(sessionRequest);
     console.log(json);
-    return postData("/api/v2/session_request/", json);
+    return postData("/haparlament-7a349/us-central1/api/v1/session-request/", json);
 }
 // export  postSessionRequest;

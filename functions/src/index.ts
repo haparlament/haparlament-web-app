@@ -11,11 +11,11 @@ admin.initializeApp();
 export const db = admin.firestore();
 const app: Express = express();
 
-app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/session', sessionRoutes);
-app.use('/api/v1/session-requests', sessionRequestRoutes);
-app.use('/api/v1/moderators', moderatorsRoutes);
+app.use('/v1/user', userRoutes);
+app.use('/v1/session', sessionRoutes);
+app.use('/v1/session-request', sessionRequestRoutes);
+app.use('/v1/moderators', moderatorsRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-export const webApi = https.onRequest(app);
+export const api = https.onRequest(app);

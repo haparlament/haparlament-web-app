@@ -36,10 +36,10 @@ const user = {
 export default { images, user };
 
 const exampleJson = {
-  ImageID: "levin2.jpeg",
-  Feeling: "שמח",
-  UserName: "שגיא בלכר",
-  PhoneNumber: "+972547669908",
-  Day: "ראשון",
-  HourRange: "08-10",
+  imageId: "levin2.jpeg",
+  feeling: "שמח",
+  username: "שגיא בלכר",
+  phoneNumber: "+972547669908",
+  day: "ראשון",
+  hourRange: "08-10",
 };
