@@ -15,7 +15,7 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
     setPhone("972" + phone.substring(1));
 
     setjsonObject((prevState) => {
-      return { ...prevState, PhoneNumber: phone, UserName: name };
+      return { ...prevState, phoneNumber: phone, username: name };
     });
     setSlide(slide + 1);
     navigate("/ChooseTime");

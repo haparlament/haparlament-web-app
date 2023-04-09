@@ -19,8 +19,8 @@ function SubmitFeelings({
     setjsonObject((prevState) => {
       return {
         ...prevState,
-        ImageID: imgID.toString(),
-        Feeling: selectedEmotionId.toString(),
+        imageId: imgID.toString(),
+        feeling: selectedEmotionId.toString(),
       };
     });
     setSlide(slide + 1);

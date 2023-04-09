@@ -27,14 +27,14 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
   const handleDay = (day) => {
     day.isPreesed = !day.isPreesed;
     setjsonObject((prevState) => {
-      return { ...prevState, Day: day.day };
+      return { ...prevState, day: day.day };
     });
   };
 
   const handleHour = (hour) => {
     hour.isPreesed = !hour.isPreesed;
     setjsonObject((prevState) => {
-      return { ...prevState, HourRange: hour.hour };
+      return { ...prevState, hourRange: hour.hour };
     });
   };
 
@@ -58,7 +58,7 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
   };
 
   const handleSubmit = (jsonObject) => {
-    if (jsonObject.HourRange === "") {
+    if (jsonObject.hourRange === "") {
       setShowChooseTimePopUp(true);
     } else {
       console.log("sagy log: ", jsonObject);

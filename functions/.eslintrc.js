@@ -29,5 +29,15 @@ module.exports = {
         'import/no-unresolved': 0,
         'indent': ['error', 4],
         'object-curly-spacing': ['error', 'always'],
+        'new-cap': ['error', { 'capIsNew': false }],
+        'require-jsdoc': ['error', {
+            'require': {
+                'FunctionDeclaration': false,
+                'MethodDefinition': false,
+                'ClassDeclaration': false,
+                'ArrowFunctionExpression': false,
+                'FunctionExpression': false,
+            },
+        }],
     },
 };

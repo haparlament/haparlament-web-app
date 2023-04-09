@@ -1,8 +1,12 @@
 import { Router as expressRouter } from 'express';
-import { getAllSessionRequests } from '../../controllers/session-request';
+import {
+    // getAllSessionRequests,
+    createSessionRequest,
+} from '../../controllers/session-request';
 
 const router = expressRouter();
 
-router.get('', getAllSessionRequests);
+// router.get('', getAllSessionRequests);
+router.post('', createSessionRequest);
 
 export default router;
