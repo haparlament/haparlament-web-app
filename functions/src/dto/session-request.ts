@@ -1,9 +1,25 @@
 import { IsNotEmpty, IsString, IsMobilePhone } from 'class-validator';
 
 /**
- * Validates create session DTO.
- */
+* Validates create session DTO.
+*/
 export class CreateSessionRequestDto {
+    constructor(
+        username: string,
+        imageId: string,
+        feeling: string,
+        phoneNumber: string,
+        day: string,
+        hourRange: string
+    ) {
+        this.username = username;
+        this.imageId = imageId;
+        this.feeling = feeling;
+        this.phoneNumber = phoneNumber;
+        this.day = day;
+        this.hourRange = hourRange;
+    }
+
 @IsNotEmpty()
 @IsString()
     username: string;

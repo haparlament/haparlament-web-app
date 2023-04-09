@@ -20,7 +20,7 @@ function SubmitFeelings({
       return {
         ...prevState,
         imageId: imgID.toString(),
-        Feeling: selectedEmotionId.toString(),
+        feeling: selectedEmotionId.toString(),
       };
     });
     setSlide(slide + 1);
