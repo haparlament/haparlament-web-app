@@ -1,0 +1,71 @@
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  width: 100%;
+}
+
+p{
+  direction: rtl;
+}
+
+h3{
+  direction: rtl;
+}
+
+.bg-tp{
+  background-color: transparent;
+}
+
+h1{
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: center;
+}
+
+h4{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.7rem;
+  line-height: 23px;
+}
+
+button{
+  border: none;
+  cursor: pointer;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+  background-color: #f3f0f0;
+}
+
+.mediume-card{
+  min-height: 67vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 16px;
+  background-color: white;
+}
+
+.big-card{
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 16px;
+  background-color: white;
+}
