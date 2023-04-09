@@ -1,3 +1,5 @@
+const BASE_API_URL = 'https://us-central1-haparlament.cloudfunctions.net/api/v1';
+
 class SessionRequest {
     constructor(imageId, feeling, username, phoneNumber, day, hourRange) {
       this.imageId = imageId;
@@ -34,6 +36,6 @@ async function postData(url = "", data = {}) {
 export function postSessionRequest(sessionRequest) {
     let json =  JSON.stringify(sessionRequest);
     console.log(json);
-    return postData("https://us-central1-haparlament.cloudfunctions.net/api/v1/session-request/", json);
+    return postData(`${BASE_API_URL}/session-request/`, json);
 }
 // export  postSessionRequest;
