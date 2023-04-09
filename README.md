@@ -25,7 +25,7 @@ The project is based on Firebase thus takes the repo structure from Google's Fir
 1. make sure you are running on node16.20.0-lts
 2. install firebase tools globally `npm install -g firebase-tools`
 3. you should make sure you are added to haparlament project on firebase and receive required credentials.
-4. run `firebase init emulators` - pick `haparlament-7a349` as the project, and answer all other questions with suggested values.
+4. run `firebase init emulators` - pick `haparlament` as the project, and answer all other questions with suggested values.
 
 #### Backend
 
