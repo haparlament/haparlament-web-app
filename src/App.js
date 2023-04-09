@@ -34,7 +34,7 @@ function App() {
               element={<WelcomePage slide={slide} setSlide={setSlide} />}
             />
             <Route
-              path="/ImageContent"
+              path="/emotions-selection"
               element={
                 <ImageContent
                   setjsonObject={setjsonObject}
@@ -44,7 +44,7 @@ function App() {
               }
             />
             <Route
-              path="/DetailsForm"
+              path="/details-form"
               element={
                 <DetailsForm
                   setjsonObject={setjsonObject}
@@ -54,7 +54,7 @@ function App() {
               }
             />
             <Route
-              path="/ChooseTime"
+              path="/time-selection"
               element={
                 <ChooseTime
                   setjsonObject={setjsonObject}
