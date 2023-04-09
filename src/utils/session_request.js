@@ -34,6 +34,6 @@ async function postData(url = "", data = {}) {
 export function postSessionRequest(sessionRequest) {
     let json =  JSON.stringify(sessionRequest);
     console.log(json);
-    return postData("/haparlament-7a349/us-central1/api/v1/session-request/", json);
+    return postData("https://us-central1-haparlament.cloudfunctions.net/api/v1/session-request/", json);
 }
 // export  postSessionRequest;
