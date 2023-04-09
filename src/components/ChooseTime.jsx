@@ -45,7 +45,7 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
     console.log("Confirmed!");
     setShowPopup(false);
     setSlide(0);
-    navigate("/ImageContent");
+    navigate("/emotions-selection");
   };
 
   const handleCancel = () => {

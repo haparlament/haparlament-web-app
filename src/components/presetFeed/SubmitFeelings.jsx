@@ -24,7 +24,7 @@ function SubmitFeelings({
       };
     });
     setSlide(slide + 1);
-    navigate("/DetailsForm");
+    navigate("/details-form");
   };
 
   return (

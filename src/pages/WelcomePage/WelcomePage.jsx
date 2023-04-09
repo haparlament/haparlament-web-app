@@ -6,7 +6,7 @@ function WelcomePage({ slide, setSlide }) {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/ImageContent");
+    navigate("/emotions-selection");
     setSlide(slide + 1);
   };
 

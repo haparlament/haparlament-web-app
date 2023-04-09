@@ -18,7 +18,7 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
       return { ...prevState, phoneNumber: phone, username: name };
     });
     setSlide(slide + 1);
-    navigate("/ChooseTime");
+    navigate("/time-selection");
   };
 
   return (
