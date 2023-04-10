@@ -1,15 +1,18 @@
 import { Request, Response } from 'express';
-import db from '../utils/firestore-client';
+import firestore from '../utils/firestore-client';
+import airtable from '../utils/airtable-client';
 import { validateDto } from '../services/validation-service';
 import { CreateSessionRequestDto } from '../dto/session-request';
 import logger from '../utils/logger';
 import { isEmpty } from 'lodash';
 
 const sessionRequestsCollection = 'session_requests';
+const AIRTABLE_DATABASE_ID = 'appsk8XVQplqlNAAz';
+const AIRTABLE_TABLE_ID = 'Session Request';
 
 export const getAllSessionRequests = async (req: Request, res: Response) => {
     try {
-        const sessionRequests = await db.getAll(sessionRequestsCollection);
+        const sessionRequests = await firestore.getAll(sessionRequestsCollection);
         res.status(200).json(sessionRequests);
     } catch (error) {
         logger.error(error);
@@ -42,7 +45,8 @@ export const createSessionRequest = async (req: Request, res: Response) => {
     }
 
     try {
-        await db.create(sessionRequestsCollection, req.body);
+        await firestore.create(sessionRequestsCollection, createsessionRequestDto.json());
+        await airtable.create(AIRTABLE_DATABASE_ID, AIRTABLE_TABLE_ID, createsessionRequestDto.airtable());
         return res.status(200).json(createsessionRequestDto);
     } catch (error) {
         logger.error(error);

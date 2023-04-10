@@ -43,4 +43,26 @@ export class CreateSessionRequestDto {
 @IsNotEmpty()
 @IsString()
     hourRange: string;
+
+    json() {
+        return { 
+            username: this.username,
+            imageId: this.imageId,
+            feeling: this.feeling,
+            phoneNumber: this.phoneNumber,
+            day: this.day,
+            hourRange: this.hourRange,
+        }
+    }
+
+    airtable() {
+        return {
+            UserName: this.username,
+            ImageID: this.imageId,
+            Feeling: this.feeling,
+            PhoneNumber: this.phoneNumber,
+            Day: this.day,
+            HourRange: this.hourRange,
+        }
+    }
 }
