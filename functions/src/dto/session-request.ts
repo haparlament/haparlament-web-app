@@ -20,39 +20,39 @@ export class CreateSessionRequestDto {
         this.hourRange = hourRange;
     }
 
-@IsNotEmpty()
-@IsString()
-    username: string;
+    @IsNotEmpty()
+    @IsString()
+        username: string;
 
-@IsNotEmpty()
-@IsString()
-    imageId: string;
+    @IsNotEmpty()
+    @IsString()
+        imageId: string;
 
-@IsNotEmpty()
-@IsString()
-    feeling: string;
+    @IsNotEmpty()
+    @IsString()
+        feeling: string;
 
-@IsNotEmpty()
-@IsMobilePhone('he-IL')
-    phoneNumber: string;
+    @IsNotEmpty()
+    @IsMobilePhone('he-IL')
+        phoneNumber: string;
 
-@IsNotEmpty()
-@IsString()
-    day: string;
+    @IsNotEmpty()
+    @IsString()
+        day: string;
 
-@IsNotEmpty()
-@IsString()
-    hourRange: string;
+    @IsNotEmpty()
+    @IsString()
+        hourRange: string;
 
     json() {
-        return { 
+        return {
             username: this.username,
             imageId: this.imageId,
             feeling: this.feeling,
             phoneNumber: this.phoneNumber,
             day: this.day,
             hourRange: this.hourRange,
-        }
+        };
     }
 
     airtable() {
@@ -63,6 +63,6 @@ export class CreateSessionRequestDto {
             PhoneNumber: this.phoneNumber,
             Day: this.day,
             HourRange: this.hourRange,
-        }
+        };
     }
 }

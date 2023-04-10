@@ -3,7 +3,7 @@ import { config } from '../config';
 
 class AirtableClient {
     constructor() {
-        Airtable.configure({ apiKey: config.airtable.apiKey })
+        Airtable.configure({ apiKey: config.airtable.apiKey });
     }
 
     async create(databaseId: string, tableId: string, data: object): Promise<Record<FieldSet>> {
