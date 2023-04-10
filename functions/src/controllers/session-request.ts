@@ -5,9 +5,9 @@ import { validateDto } from '../services/validation-service';
 import { CreateSessionRequestDto } from '../dto/session-request';
 import logger from '../utils/logger';
 import { isEmpty } from 'lodash';
+import { config } from '../config';
 
 const sessionRequestsCollection = 'session_requests';
-const AIRTABLE_DATABASE_ID = 'appsk8XVQplqlNAAz';
 const AIRTABLE_TABLE_ID = 'Session Request';
 
 export const getAllSessionRequests = async (req: Request, res: Response) => {
@@ -46,7 +46,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
 
     try {
         await firestore.create(sessionRequestsCollection, createsessionRequestDto.json());
-        await airtable.create(AIRTABLE_DATABASE_ID, AIRTABLE_TABLE_ID, createsessionRequestDto.airtable());
+        await airtable.create(config.airtable.databaseId, AIRTABLE_TABLE_ID, createsessionRequestDto.airtable());
         return res.status(200).json(createsessionRequestDto);
     } catch (error) {
         logger.error(error);
