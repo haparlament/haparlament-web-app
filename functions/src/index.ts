@@ -1,6 +1,5 @@
+require('./firebase-init');
 import { https } from 'firebase-functions';
-import * as admin from 'firebase-admin';
-admin.initializeApp();
 import express, { Express } from 'express';
 import cors from 'cors';
 import * as bodyParser from 'body-parser';
