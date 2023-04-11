@@ -55,10 +55,13 @@
 .send-details-div{
   display: flex;
   flex-direction: row;
-  margin-top: 5vh;
+  /* margin-top: 5vh; */
   justify-content: space-around;
   align-items: center;
-  width: 105%;
+  width: 100%;
+  /* new */
+  position: absolute;
+  bottom: 13vh;
 }
 
 .send-details-button{

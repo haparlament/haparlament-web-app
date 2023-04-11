@@ -16,8 +16,8 @@ function App() {
     feeling: "",
     username: "",
     phoneNumber: "",
-    day: "",
-    hourRange: "",
+    selectedDays: [],
+    selectedHourRanges: [],
   };
 
   const [jsonObject, setjsonObject] = useState(initJsonObject);
