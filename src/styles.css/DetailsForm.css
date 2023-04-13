@@ -39,6 +39,10 @@
   opacity: 1;
 }
 
+.phone-deatils-inputs{
+  direction: ltr;
+}
+
 .left-arrow-icon{
   border: none;
 }

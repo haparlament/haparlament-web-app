@@ -17,16 +17,33 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
   const [showNotValidName, setShowNotValidName] = useState(false);
   const [showNotValidPhoneNumber, setShowNotValidPhoneNumber] = useState(false);
 
-  // const handleSubmit = (e) => {};
+  const checkPhoneNumbervalid = () => {
+    // regex know this templates:
+    // 052-111-2222
+    // 052-1112222
+    // 0521112222
+    // 052 111 2222
+    // 972521112222
+    // 972-52-111-2222
+    // +972-52-111-2222
+    // 00972521112222
+    const phoneNumRegExp =
+      /^(\+972|0|972|00972)[\- ]?([1-9]\d{1})[\- ]?([1-9]\d{6}|\d{3}[\- ]?\d{4})$/;
+    return phoneNumRegExp.test(phoneNumber);
+  };
+
+  // No charcters check for now, only characters count limit
+  const checkNamevalid = () => {
+    return name.length > 3 && name.length < 50;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const modPhoneNumber = "+972" + phoneNumber.substring(1);
-    if (name.length < 3) {
+    if (!checkNamevalid) {
       setShowNotValidName(true);
       return;
     }
-    if (phoneNumber.length !== 10) {
+    if (!checkPhoneNumbervalid) {
       setShowNotValidPhoneNumber(true);
       return;
     }
@@ -37,8 +54,8 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
   };
 
   useEffect(() => {
-    setIsNameValid(name.length > 3);
-    setIsPhoneNumberValid(phoneNumber.length === 10);
+    setIsNameValid(checkNamevalid());
+    setIsPhoneNumberValid(checkPhoneNumbervalid());
   }, [name, phoneNumber]);
 
   return (
@@ -80,7 +97,7 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
         />
         <br />
         <input
-          className="deatils-inputs"
+          className="deatils-inputs phone-deatils-inputs"
           id="phone"
           placeholder="מספר טלפון"
           type="tel"
