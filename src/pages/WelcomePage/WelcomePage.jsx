@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles.css/WelcomePage.css";
 
 function WelcomePage({ slide, setSlide }) {
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {

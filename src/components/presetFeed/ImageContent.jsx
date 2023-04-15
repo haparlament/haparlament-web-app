@@ -4,7 +4,7 @@ import SubmitFeelings from "./SubmitFeelings";
 import data from "../../data/data";
 import "../../styles.css/ImageContent.css";
 
-function ImageContent({ setjsonObject, slide, setSlide }) {
+function ImageContent({ appStateAPI, slide, setSlide }) {
   const images = data.images;
   const [imgURL, setImgURL] = useState(null);
 
@@ -36,12 +36,12 @@ function ImageContent({ setjsonObject, slide, setSlide }) {
       <Feelings
         selectedEmotionId={selectedEmotionId}
         setSelectedEmotionId={setSelectedEmotionId}
-        setjsonObject={setjsonObject}
+        setjsonObject={appStateAPI.session.set}
       />
       <SubmitFeelings
         imgID={imgID}
         selectedEmotionId={selectedEmotionId}
-        setjsonObject={setjsonObject}
+        setjsonObject={appStateAPI.session.set}
         setSlide={setSlide}
         slide={slide}
         handlePass={handlePass}

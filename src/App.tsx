@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, Fragment, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DetailsForm from "./components/DetailsForm/DetailsForm";
@@ -23,6 +23,18 @@ function App() {
   const [jsonObject, setjsonObject] = useState(initJsonObject);
   const [slide, setSlide] = useState(-1);
 
+  const Page = (props: { children: any }) => {
+    const appStateAPI = {
+      session: {
+        get: () => jsonObject,
+        set: setjsonObject
+      }
+    }
+    return <Fragment>
+            {props.children({appStateAPI})}
+          </Fragment>
+  }
+
   return (
     <BrowserRouter>
       <div className="container">
@@ -31,16 +43,22 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<WelcomePage slide={slide} setSlide={setSlide} />}
+              element={<Page>{(props: any) => 
+                <WelcomePage {...props} slide={slide} setSlide={setSlide} />
+              } 
+              </Page>}
             />
             <Route
               path="/emotions-selection"
               element={
-                <ImageContent
-                  setjsonObject={setjsonObject}
-                  slide={slide}
-                  setSlide={setSlide}
-                />
+                <Page>{(props: any) =>                 
+                  <ImageContent
+                    {...props}
+                    slide={slide}
+                    setSlide={setSlide}
+                  />}
+                </Page>
+
               }
             />
             <Route
