@@ -5,6 +5,8 @@ import { LeftArrow, LeftArrowDisabled } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
 import Popup from "../Popup";
 
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+
 function DetailsForm({ setjsonObject, setSlide, slide }) {
   const navigate = useNavigate();
 
@@ -108,7 +110,16 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
       </form>
       <div className="send-details-div">
         <button type="submit" onClick={handleSubmit}>
-          {isNameValid && isPhoneNumberValid ? LeftArrow : LeftArrowDisabled}
+          <BsFillArrowLeftCircleFill
+            color="black"
+            size="2rem"
+            style={{
+              borderRadius: "100px",
+              backgroundColor:
+                isNameValid && isPhoneNumberValid ? "transparent" : "#3E3A37",
+              cursor: "pointer",
+            }}
+          />
         </button>
         <button>{TwoLinesRight}</button>
       </div>
