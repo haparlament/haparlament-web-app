@@ -1,28 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css/SubmitFeelings.css";
+import { useDispatch } from 'react-redux';
+import {
+  setSession
+} from './../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice';
 
 function SubmitFeelings({
   imgID,
   selectedEmotionId,
-  setjsonObject,
   setSlide,
   slide,
   handlePass,
 }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedEmotionId) return;
-
-    setjsonObject((prevState) => {
-      return {
-        ...prevState,
-        imageId: imgID.toString(),
-        feeling: selectedEmotionId.toString(),
-      };
-    });
+    dispatch(setSession({
+      imageId: imgID.toString(),
+      feeling: selectedEmotionId.toString()
+    }));
     setSlide(slide + 1);
     navigate("/details-form");
   };
