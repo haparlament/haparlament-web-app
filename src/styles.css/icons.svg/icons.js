@@ -82,6 +82,39 @@ export const LeftArrow = (
   </svg>
 );
 
+export const LeftArrowDisabled = (
+  <svg
+    className="left-arrow-icon"
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="20"
+      cy="20.0001"
+      r="20"
+      transform="rotate(-180 20 20.0001)"
+      fill="#3E3A37"
+    />
+    <path
+      d="M11.8601 20.0001L27.3524 20.0001"
+      stroke="#585858"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M19.5283 27.4261L11.86 20.0015L19.5283 12.5769"
+      stroke="#585858"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
 export const TwoLinesRight = (
   <svg
     width="150"

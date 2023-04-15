@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
 import "../../src/styles.css/ChooseTime.css";
@@ -7,64 +7,93 @@ import { postSessionRequest } from "../utils/session_request";
 
 function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
   const navigate = useNavigate();
-  const [days] = useState([
-    { day: "ראשון", isPreesed: false },
-    { day: "שני", isPreesed: false },
-    { day: "שלישי", isPreesed: false },
-    { day: "רביעי", isPreesed: false },
-    { day: "חמישי", isPreesed: false },
-    { day: "שישי", isPreesed: false },
-    { day: "שבת", isPreesed: false },
-  ]);
-
-  const [hours] = useState([
-    { hour: "בוקר 10:00-12:00", isPreesed: false },
-    { hour: "צהריים 10:00-12:00", isPreesed: false },
-    { hour: "ערב 18:00-20:00", isPreesed: false },
-    { hour: "לילה 20:00-22:00", isPreesed: false },
-  ]);
-
-  const handleDay = (day) => {
-    day.isPreesed = !day.isPreesed;
-    setjsonObject((prevState) => {
-      return { ...prevState, day: day.day };
-    });
-  };
-
-  const handleHour = (hour) => {
-    hour.isPreesed = !hour.isPreesed;
-    setjsonObject((prevState) => {
-      return { ...prevState, hourRange: hour.hour };
-    });
-  };
-
+  const [isTimeValid, setIsTimeValid] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [showChooseTimePopUp, setShowChooseTimePopUp] = useState(false);
+  const [showErrorTimePopUp, setShowErrorTimePopUp] = useState(false);
+
+  const [days, setDays] = useState([
+    { day: "ראשון", isPressed: false },
+    { day: "שני", isPressed: false },
+    { day: "שלישי", isPressed: false },
+    { day: "רביעי", isPressed: false },
+    { day: "חמישי", isPressed: false },
+    { day: "שישי", isPressed: false },
+    { day: "שבת", isPressed: false },
+  ]);
+
+  const [hours, setHours] = useState([
+    { hour: "בוקר 10:00-12:00", isPressed: false },
+    { hour: "צהריים 10:00-12:00", isPressed: false },
+    { hour: "ערב 18:00-20:00", isPressed: false },
+    { hour: "לילה 20:00-22:00", isPressed: false },
+  ]);
+
+  const handleDay = (d) => {
+    setDays(
+      days.map((element) => {
+        if (d.day === element.day) {
+          return { ...element, isPressed: !element.isPressed };
+        } else {
+          return element;
+        }
+      })
+    );
+  };
+
+  const handleHour = (h) => {
+    setHours(
+      hours.map((element) => {
+        if (h.hour === element.hour) {
+          return { ...element, isPressed: !element.isPressed };
+        } else {
+          return element;
+        }
+      })
+    );
+  };
+
+  useEffect(() => {
+    const isDaysValid = days.some((d) => d.isPressed === true);
+    const isHoursValid = hours.some((h) => h.isPressed === true);
+    setIsTimeValid(isDaysValid && isHoursValid);
+  }, [days, hours]);
+
+  const handleSubmit = (jsonObject) => {
+    // verify details are valid
+    if (!isTimeValid) {
+      setShowErrorTimePopUp(true);
+      return;
+    }
+    // prepare json object
+    const selectedDays = days.filter((d) => d.isPressed).map((d) => d.day);
+    const selectedHourRanges = hours
+      .filter((h) => h.isPressed)
+      .map((h) => h.hour);
+    setjsonObject((prevJsonState) => {
+      return { ...prevJsonState, selectedDays, selectedHourRanges };
+    });
+
+    // set pop up to rise up
+    setShowPopup(true);
+  };
 
   const handleConfirm = () => {
-    console.log("Confirmed!");
+    // send details to back
+    postSessionRequest(jsonObject);
     setShowPopup(false);
     setSlide(0);
     navigate("/emotions-selection");
   };
 
   const handleCancel = () => {
-    console.log("Canceled!");
+    setjsonObject((prevJsonState) => {
+      return { ...prevJsonState, selectedDays: [], selectedHourRanges: [] };
+    });
     setShowPopup(false);
   };
 
   const handleChooseTime = () => {
-    setShowChooseTimePopUp(false);
-  };
-
-  const handleSubmit = (jsonObject) => {
-    if (jsonObject.hourRange === "") {
-      setShowChooseTimePopUp(true);
-    } else {
-      console.log("sagy log: ", jsonObject);
-      postSessionRequest(jsonObject);
-      setShowPopup(true);
-    }
+    setShowErrorTimePopUp(false);
   };
 
   return (
@@ -83,7 +112,7 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
             {days.map((day, i) => (
               <button
                 className={`time-button ${
-                  day.isPreesed ? "time-button-pressed" : null
+                  day.isPressed ? "time-button-pressed" : null
                 }`}
                 key={i}
                 onClick={() => handleDay(day)}
@@ -99,7 +128,7 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
             {hours.map((hour, i) => (
               <button
                 className={`time-button ${
-                  hour.isPreesed ? "time-button-pressed" : null
+                  hour.isPressed ? "time-button-pressed" : null
                 }`}
                 key={i}
                 onClick={() => handleHour(hour)}
@@ -113,7 +142,9 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
 
       <div className="send-details-div">
         <button
-          className="send-details-button"
+          className={`send-details-button ${
+            isTimeValid ? null : "button-disabled"
+          }`}
           type="submit"
           onClick={() => handleSubmit(jsonObject)}
         >
@@ -134,7 +165,7 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
             />
           </>
         )}
-        {showChooseTimePopUp && (
+        {showErrorTimePopUp && (
           <>
             <div className="darken"></div>
             <Popup
