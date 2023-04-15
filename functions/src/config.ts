@@ -1,8 +1,6 @@
-import { defineSecret, defineString } from 'firebase-functions/params';
-
 export const config = {
     airtable: {
-        apiKey: defineSecret('AIRTABLE_API_KEY').toString(),
-        databaseId: defineString('AIRTABLE_DATABASE_ID').toString(),
+        apiKey: process.env.AIRTABLE_API_KEY as string,
+        databaseId: process.env.AIRTABLE_DATABASE_ID as string,
     },
 };

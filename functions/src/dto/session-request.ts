@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsMobilePhone } from 'class-validator';
+import { IsNotEmpty, IsString, IsMobilePhone, IsDate } from 'class-validator';
 
 /**
 * Validates create session DTO.
@@ -10,7 +10,7 @@ export class CreateSessionRequestDto {
         feeling: string,
         phoneNumber: string,
         day: string,
-        hourRange: string
+        hourRange: string,
     ) {
         this.username = username;
         this.imageId = imageId;
@@ -44,6 +44,14 @@ export class CreateSessionRequestDto {
     @IsString()
         hourRange: string;
 
+    @IsNotEmpty()
+    @IsDate()
+        createdAt: Date;
+
+    @IsNotEmpty()
+    @IsDate()
+        updatedAt: Date;
+
     json() {
         return {
             username: this.username,
@@ -52,17 +60,8 @@ export class CreateSessionRequestDto {
             phoneNumber: this.phoneNumber,
             day: this.day,
             hourRange: this.hourRange,
-        };
-    }
-
-    airtable() {
-        return {
-            UserName: this.username,
-            ImageID: this.imageId,
-            Feeling: this.feeling,
-            PhoneNumber: this.phoneNumber,
-            Day: this.day,
-            HourRange: this.hourRange,
+            updatedAt: this.updatedAt,
+            createdAt: this.createdAt,
         };
     }
 }
