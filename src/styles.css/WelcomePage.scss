@@ -1,0 +1,68 @@
+.instructions-div{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.instructions-header-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  margin-top: 25px;
+  margin-bottom: 2vh;
+  width: 230px;
+}
+
+.instruction{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 0.75rem;
+}
+
+.dot-icon{
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  color: white;
+  margin-left: 7%;
+  font-size: 0.85rem;
+}
+
+.dot-text{
+  font-size: 0.9rem;
+  width: 80%;
+  direction: rtl;
+  font-weight: 500;
+}
+
+
+.instructions-bottom {
+  min-height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 10px;
+  margin-top: auto;
+  .instructions-button{
+    width: 184px;
+    height: 56px;
+    bottom: 5vh;
+    background: #216FE4;
+    border-radius: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
