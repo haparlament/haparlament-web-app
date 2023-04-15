@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles.css/WelcomePage.css";
+import "../../styles.css/WelcomePage.scss";
 
 function WelcomePage({ slide, setSlide }) {
   const navigate = useNavigate();
@@ -39,9 +39,11 @@ function WelcomePage({ slide, setSlide }) {
           </div>
         ))}
       </div>
-      <button className="instructions-button" onClick={handleSubmit}>
-        יאללה, בואו נתחיל
-      </button>
+      <div className="instructions-bottom">
+        <button className="instructions-button" onClick={handleSubmit}>
+          יאללה, בואו נתחיל
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import DetailsForm from "./components/DetailsForm/DetailsForm";
 import ChooseTime from "./components/ChooseTime";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
@@ -74,46 +73,9 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer></Footer>
       </div>
     </BrowserRouter>
   );
 }
 
 export default App;
-
-// In case deciding that routes isn't secured
-// users can jump directly to submission without filling in all needed details.
-
-// <div className="container">
-//   <Header></Header>
-
-//   <div className="body">
-//     {slide === -1 && <WelcomePage slide={slide} setSlide={setSlide} />}
-
-//     {slide === 0 && (
-//       <ImageContent
-//         setjsonObject={setjsonObject}
-//         slide={slide}
-//         setSlide={setSlide}
-//       />
-//     )}
-//     {/* {<OptionalPartner setjsonObject={setjsonObject} />} */}
-//     {slide === 1 && (
-//       <DetailsForm
-//         setjsonObject={setjsonObject}
-//         setSlide={setSlide}
-//         slide={slide}
-//       />
-//     )}
-//     {slide === 2 && (
-//       <ChooseTime
-//         setjsonObject={setjsonObject}
-//         jsonObject={jsonObject}
-//         setSlide={setSlide}
-//         slide={slide}
-//       />
-//     )}
-//   </div>
-//   <Footer></Footer>
-// </div>;
