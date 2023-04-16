@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../styles.css/Feelings.css";
-import SubmitFeelings from "./SubmitFeelings";
 
 function Feelings({ selectedEmotionId, setSelectedEmotionId }) {
   const emotions = [
