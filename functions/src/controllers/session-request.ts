@@ -19,7 +19,7 @@ export const getAllSessionRequests = async (req: Request, res: Response) => {
 
 export const createSessionRequest = async (req: Request, res: Response) => {
     const {
-        username,
+        userName,
         imageId,
         feeling,
         phoneNumber,
@@ -27,7 +27,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
         hourRange,
     } = req.body;
     const createsessionRequestDto = new CreateSessionRequestDto(
-        username,
+        userName,
         imageId,
         feeling,
         phoneNumber,

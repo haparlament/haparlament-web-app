@@ -38,7 +38,7 @@ export default { images, user };
 const exampleJson = {
   imageId: "levin2.jpeg",
   feeling: "שמח",
-  username: "ישראל ישראלי",
+  userName: "ישראל ישראלי",
   phoneNumber: "+972547111111",
   day: "ראשון",
   hourRange: "08-10",

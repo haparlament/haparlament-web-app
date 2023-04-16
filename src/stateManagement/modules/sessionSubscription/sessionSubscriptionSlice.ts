@@ -12,7 +12,7 @@ const initialState: SessionSubscriptionState = {
   data: {
     imageId: "",
     feeling: "",
-    username: "",
+    userName: "",
     phoneNumber: "",
     day: "",
     hourRange: "",

@@ -18,7 +18,7 @@ function DetailsForm({ setSlide, slide }) {
     e.preventDefault();
     setPhone("972" + phone.substring(1));
     dispatch(setSession({
-      phoneNumber: phone, username: name
+      phoneNumber: phone, userName: name
     }));
     setSlide(slide + 1);
     navigate("/time-selection");

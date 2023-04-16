@@ -16,27 +16,27 @@ function ChooseTime({ setSlide, slide }) {
   const sessionSubscription = useSelector(selectSessionSubscription);
 
   const [days, setDays] = useState([
-    { day: "ראשון", isPreesed: false },
-    { day: "שני", isPreesed: false },
-    { day: "שלישי", isPreesed: false },
-    { day: "רביעי", isPreesed: false },
-    { day: "חמישי", isPreesed: false },
-    { day: "שישי", isPreesed: false },
-    { day: "שבת", isPreesed: false },
+    { day: "ראשון", isPressed: false },
+    { day: "שני", isPressed: false },
+    { day: "שלישי", isPressed: false },
+    { day: "רביעי", isPressed: false },
+    { day: "חמישי", isPressed: false },
+    { day: "שישי", isPressed: false },
+    { day: "שבת", isPressed: false },
   ]);
 
   const [hours, setHours] = useState([
-    { hour: "בוקר 10:00-12:00", isPreesed: false },
-    { hour: "צהריים 10:00-12:00", isPreesed: false },
-    { hour: "ערב 18:00-20:00", isPreesed: false },
-    { hour: "לילה 20:00-22:00", isPreesed: false },
+    { hour: "בוקר 10:00-12:00", isPressed: false },
+    { hour: "צהריים 10:00-12:00", isPressed: false },
+    { hour: "ערב 18:00-20:00", isPressed: false },
+    { hour: "לילה 20:00-22:00", isPressed: false },
   ]);
 
   const handleDay = (index, day) => {
     const newDaysArr = [...days]
     newDaysArr[index] = {
       day: newDaysArr[index].day,
-      isPreesed: !newDaysArr[index].isPreesed
+      isPressed: !newDaysArr[index].isPressed
     }
     setDays(newDaysArr)
     dispatch(setSession({
@@ -48,10 +48,10 @@ function ChooseTime({ setSlide, slide }) {
     const newHoursArr = [...hours]
     newHoursArr[index] = {
       hour: newHoursArr[index].hour,
-      isPreesed: !newHoursArr[index].isPreesed
+      isPressed: !newHoursArr[index].isPressed
     }
     setHours(newHoursArr)
-    // hour.isPreesed = !hour.isPreesed;
+    // hour.isPressed = !hour.isPressed;
     dispatch(setSession({
       hourRange: hour.hour
     }));
@@ -102,7 +102,7 @@ function ChooseTime({ setSlide, slide }) {
             {days.map((day, i) => (
               <button
                 className={`time-button ${
-                  day.isPreesed ? "time-button-pressed" : null
+                  day.isPressed ? "time-button-pressed" : null
                 }`}
                 key={i}
                 onClick={() => handleDay(i, day)}
@@ -118,7 +118,7 @@ function ChooseTime({ setSlide, slide }) {
             {hours.map((hour, i) => (
               <button
                 className={`time-button ${
-                  hour.isPreesed ? "time-button-pressed" : null
+                  hour.isPressed ? "time-button-pressed" : null
                 }`}
                 key={i}
                 onClick={() => handleHour(i, hour)}
