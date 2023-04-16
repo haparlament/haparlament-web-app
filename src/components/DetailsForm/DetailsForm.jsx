@@ -25,7 +25,7 @@ function DetailsForm({ setSlide, slide }) {
   };
 
   return (
-    <div className="big-card details-form-div bg-tp">
+    <div className="big-card details-form-div full-screen-mode">
       <div className="details-form-headers">
         <h1>בואו נדבר</h1>
         <h4>מלא פרטים כדי שנוכל ליצור איתך קשר</h4>
