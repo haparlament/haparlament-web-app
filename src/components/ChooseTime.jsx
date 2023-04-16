@@ -87,7 +87,7 @@ function ChooseTime({ setSlide, slide }) {
   };
 
   return (
-    <div className="big-card details-form-div bg-tp jc-sb">
+    <div className="big-card details-form-div full-screen-mode jc-sb">
       <div className="details-form-headers mb">
         <h1>מתי נוח לך?</h1>
         <h4>

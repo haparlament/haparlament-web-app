@@ -28,23 +28,21 @@ function SubmitFeelings({
   };
 
   return (
-    <div>
-      <div className="lets-talk-div">
-        <button
-          className="lets-talk-button pass-button"
-          onClick={() => handlePass()}
-        >
-          דלג
-        </button>
-        <button
-          className={`lets-talk-button ${
-            selectedEmotionId ? null : "button-disabled"
-          }`}
-          onClick={handleSubmit}
-        >
-          בואו נדבר
-        </button>
-      </div>
+    <div className="lets-talk-div">
+      <button
+        className="lets-talk-button pass-button"
+        onClick={() => handlePass()}
+      >
+        דלג
+      </button>
+      <button
+        className={`lets-talk-button ${
+          selectedEmotionId ? null : "button-disabled"
+        }`}
+        onClick={handleSubmit}
+      >
+        בואו נדבר
+      </button>
     </div>
   );
 }

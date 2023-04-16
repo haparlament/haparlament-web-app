@@ -1,6 +1,7 @@
 .details-form-div{
   display: flex;
   flex-direction: column;
+  background-color: gray;
 }
 
 .details-form-headers{
@@ -12,6 +13,10 @@
   gap: 10px;
   margin-top: 8.5vh;
   width: 75%;
+
+  h4 {
+    font-size: 0.9rem;
+  }
 }
 
 .details-form-form{

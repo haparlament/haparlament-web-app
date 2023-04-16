@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import DetailsForm from "./components/DetailsForm/DetailsForm";
 import ChooseTime from "./components/ChooseTime";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
@@ -63,7 +62,6 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer></Footer>
       </div>
       </Provider>
     </BrowserRouter>
