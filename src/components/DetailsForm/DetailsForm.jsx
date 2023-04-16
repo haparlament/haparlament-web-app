@@ -3,9 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "../../styles.css/DetailsForm.scss";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
-
-function DetailsForm({ setjsonObject, setSlide, slide }) {
+import { useDispatch } from 'react-redux';
+import {
+  setSession
+} from './../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice';
+function DetailsForm({ setSlide, slide }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -13,10 +17,9 @@ function DetailsForm({ setjsonObject, setSlide, slide }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setPhone("972" + phone.substring(1));
-
-    setjsonObject((prevState) => {
-      return { ...prevState, phoneNumber: phone, username: name };
-    });
+    dispatch(setSession({
+      phoneNumber: phone, userName: name
+    }));
     setSlide(slide + 1);
     navigate("/time-selection");
   };

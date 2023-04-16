@@ -1,10 +1,10 @@
 const BASE_API_URL = 'https://us-central1-haparlament.cloudfunctions.net/api/v1';
 
 class SessionRequest {
-    constructor(imageId, feeling, username, phoneNumber, day, hourRange) {
+    constructor(imageId, feeling, userName, phoneNumber, day, hourRange) {
       this.imageId = imageId;
       this.feeling = feeling;
-      this.username = username;
+      this.userName = userName;
       this.phoneNumber = phoneNumber;
       this.day = day;
       this.hourRange = hourRange;

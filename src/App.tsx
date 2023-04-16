@@ -5,25 +5,18 @@ import ChooseTime from "./components/ChooseTime";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import ImageContent from "./components/presetFeed/ImageContent";
 import "./styles.css/App.scss";
+import { Provider } from 'react-redux';
+import { store } from './stateManagement/store';
 
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const initJsonObject = {
-    imageId: "",
-    feeling: "",
-    username: "",
-    phoneNumber: "",
-    day: "",
-    hourRange: "",
-  };
-
-  const [jsonObject, setjsonObject] = useState(initJsonObject);
   const [slide, setSlide] = useState(-1);
 
   return (
     <BrowserRouter>
+      <Provider store={store}>
       <div className="container">
         <Header></Header>
         <div className="body">
@@ -36,7 +29,6 @@ function App() {
               path="/emotions-selection"
               element={
                 <ImageContent
-                  setjsonObject={setjsonObject}
                   slide={slide}
                   setSlide={setSlide}
                 />
@@ -46,7 +38,6 @@ function App() {
               path="/details-form"
               element={
                 <DetailsForm
-                  setjsonObject={setjsonObject}
                   setSlide={setSlide}
                   slide={slide}
                 />
@@ -56,8 +47,6 @@ function App() {
               path="/time-selection"
               element={
                 <ChooseTime
-                  setjsonObject={setjsonObject}
-                  jsonObject={jsonObject}
                   setSlide={setSlide}
                   slide={slide}
                 />
@@ -74,6 +63,7 @@ function App() {
           </Routes>
         </div>
       </div>
+      </Provider>
     </BrowserRouter>
   );
 }

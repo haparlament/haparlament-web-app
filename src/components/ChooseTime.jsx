@@ -4,38 +4,57 @@ import Popup from "../components/Popup";
 import "../../src/styles.css/ChooseTime.css";
 import { TwoLinesLeft } from "../styles.css/icons.svg/icons";
 import { postSessionRequest } from "../utils/session_request";
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectSessionSubscription,
+  setSession
+} from './../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice';
 
-function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
+function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
-  const [days] = useState([
-    { day: "ראשון", isPreesed: false },
-    { day: "שני", isPreesed: false },
-    { day: "שלישי", isPreesed: false },
-    { day: "רביעי", isPreesed: false },
-    { day: "חמישי", isPreesed: false },
-    { day: "שישי", isPreesed: false },
-    { day: "שבת", isPreesed: false },
+  const dispatch = useDispatch();
+  const sessionSubscription = useSelector(selectSessionSubscription);
+
+  const [days, setDays] = useState([
+    { day: "ראשון", isPressed: false },
+    { day: "שני", isPressed: false },
+    { day: "שלישי", isPressed: false },
+    { day: "רביעי", isPressed: false },
+    { day: "חמישי", isPressed: false },
+    { day: "שישי", isPressed: false },
+    { day: "שבת", isPressed: false },
   ]);
 
-  const [hours] = useState([
-    { hour: "בוקר 10:00-12:00", isPreesed: false },
-    { hour: "צהריים 10:00-12:00", isPreesed: false },
-    { hour: "ערב 18:00-20:00", isPreesed: false },
-    { hour: "לילה 20:00-22:00", isPreesed: false },
+  const [hours, setHours] = useState([
+    { hour: "בוקר 10:00-12:00", isPressed: false },
+    { hour: "צהריים 10:00-12:00", isPressed: false },
+    { hour: "ערב 18:00-20:00", isPressed: false },
+    { hour: "לילה 20:00-22:00", isPressed: false },
   ]);
 
-  const handleDay = (day) => {
-    day.isPreesed = !day.isPreesed;
-    setjsonObject((prevState) => {
-      return { ...prevState, day: day.day };
-    });
+  const handleDay = (index, day) => {
+    const newDaysArr = [...days]
+    newDaysArr[index] = {
+      day: newDaysArr[index].day,
+      isPressed: !newDaysArr[index].isPressed
+    }
+    setDays(newDaysArr)
+    dispatch(setSession({
+      day: day.day
+    }));
   };
 
-  const handleHour = (hour) => {
-    hour.isPreesed = !hour.isPreesed;
-    setjsonObject((prevState) => {
-      return { ...prevState, hourRange: hour.hour };
-    });
+  const handleHour = (index, hour) => {
+    const newHoursArr = [...hours]
+    newHoursArr[index] = {
+      hour: newHoursArr[index].hour,
+      isPressed: !newHoursArr[index].isPressed
+    }
+    setHours(newHoursArr)
+    // hour.isPressed = !hour.isPressed;
+    dispatch(setSession({
+      hourRange: hour.hour
+    }));
   };
 
   const [showPopup, setShowPopup] = useState(false);
@@ -57,12 +76,12 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
     setShowChooseTimePopUp(false);
   };
 
-  const handleSubmit = (jsonObject) => {
-    if (jsonObject.hourRange === "") {
+  const handleSubmit = (session) => {
+    console.log('handleSubmit', session)
+    if (session.hourRange === "") {
       setShowChooseTimePopUp(true);
     } else {
-      console.log("sagy log: ", jsonObject);
-      postSessionRequest(jsonObject);
+      postSessionRequest(session);
       setShowPopup(true);
     }
   };
@@ -83,10 +102,10 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
             {days.map((day, i) => (
               <button
                 className={`time-button ${
-                  day.isPreesed ? "time-button-pressed" : null
+                  day.isPressed ? "time-button-pressed" : null
                 }`}
                 key={i}
-                onClick={() => handleDay(day)}
+                onClick={() => handleDay(i, day)}
               >
                 {day.day}
               </button>
@@ -99,10 +118,10 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
             {hours.map((hour, i) => (
               <button
                 className={`time-button ${
-                  hour.isPreesed ? "time-button-pressed" : null
+                  hour.isPressed ? "time-button-pressed" : null
                 }`}
                 key={i}
-                onClick={() => handleHour(hour)}
+                onClick={() => handleHour(i, hour)}
               >
                 {hour.hour}
               </button>
@@ -115,7 +134,7 @@ function ChooseTime({ setjsonObject, jsonObject, setSlide, slide }) {
         <button
           className="send-details-button"
           type="submit"
-          onClick={() => handleSubmit(jsonObject)}
+          onClick={() => handleSubmit(sessionSubscription)}
         >
           שלח פרטים
         </button>
