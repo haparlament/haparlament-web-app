@@ -96,7 +96,7 @@ function DetailsForm({ setSlide, slide }) {
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
         {showNotValidPhoneNumber && !isPhoneNumberValid && (
-          <span>מספר הטלפון אינו תקין</span>
+          <span className="not-valid-text">מספר הטלפון אינו תקין</span>
         )}
         <br />
       </form>
