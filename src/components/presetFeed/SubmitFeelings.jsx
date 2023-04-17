@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css/SubmitFeelings.css";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
 import {
-  setSession
-} from './../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice';
+  closePopup,
+  openPopup,
+} from "../../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function SubmitFeelings({
   imgID,
@@ -19,10 +21,12 @@ function SubmitFeelings({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedEmotionId) return;
-    dispatch(setSession({
-      imageId: imgID.toString(),
-      feeling: selectedEmotionId.toString()
-    }));
+    dispatch(
+      setSession({
+        imageId: imgID.toString(),
+        feeling: selectedEmotionId.toString(),
+      })
+    );
     setSlide(slide + 1);
     navigate("/details-form");
   };

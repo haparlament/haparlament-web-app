@@ -5,19 +5,29 @@ import ChooseTime from "./components/ChooseTime";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import ImageContent from "./components/presetFeed/ImageContent";
 import "./styles.css/App.scss";
-import { Provider } from 'react-redux';
-import { store } from './stateManagement/store';
 
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import Popup from "./components/Popup"
+import { useSelector } from "react-redux";
+
+import {
+  selectPopupInfo
+} from "./stateManagement/modules/popupInfo/popupInfoSlice";
+
 
 function App() {
   const [slide, setSlide] = useState(-1);
+  const popupInfo = useSelector(selectPopupInfo);
+
 
   return (
     <BrowserRouter>
-      <Provider store={store}>
+
       <div className="container">
+        {popupInfo && <Popup
+          {...popupInfo}
+        />}
         <Header></Header>
         <div className="body">
           <Routes>
@@ -63,7 +73,6 @@ function App() {
           </Routes>
         </div>
       </div>
-      </Provider>
     </BrowserRouter>
   );
 }
