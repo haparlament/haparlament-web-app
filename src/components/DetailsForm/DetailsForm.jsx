@@ -85,7 +85,9 @@ function DetailsForm({ setSlide, slide }) {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
-        {showNotValidUserName && !isUserNameValid && <span>השם אינו תקין</span>}
+        {showNotValidUserName && !isUserNameValid && (
+          <span className="not-valid-text">השם אינו תקין</span>
+        )}
         <br />
         <input
           className="deatils-inputs phone-deatils-inputs"

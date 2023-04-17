@@ -8,10 +8,6 @@ import {
   selectSessionSubscription,
   setSession,
 } from "./../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
-import {
-  openPopup,
-  closePopup,
-} from "../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
