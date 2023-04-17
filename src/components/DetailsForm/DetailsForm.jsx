@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css/DetailsForm.scss";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
@@ -14,21 +14,51 @@ function DetailsForm({ setSlide, slide }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [userName, setUserName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [isUserNameValid, setIsUserNameValid] = useState(false);
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPhone("972" + phone.substring(1));
+    if (!isUserNameValid || !isPhoneNumberValid) return;
     dispatch(
       setSession({
-        phoneNumber: phone,
-        userName: name,
+        phoneNumber: phoneNumber,
+        userName: userName,
       })
     );
     setSlide(slide + 1);
     navigate("/time-selection");
   };
+
+  const checkPhoneNumbervalid = () => {
+    // regex know this templates:
+    // 052-111-2222
+    // 052-1112222
+    // 0521112222
+    // 052 111 2222
+    // 972521112222
+    // 972-52-111-2222
+    // +972-52-111-2222
+    // 00972521112222
+    const phoneNumberRegExp =
+      /^(\+972|0|972|00972)[\- ]?([1-9]\d{1})[\- ]?([1-9]\d{6}|\d{3}[\- ]?\d{4})$/;
+    return phoneNumberRegExp.test(phoneNumber);
+  };
+
+  const checkUserNamevalid = () => {
+    return userName.length > 3 && userName.length < 50;
+  };
+
+  useEffect(() => {
+    setIsUserNameValid(checkUserNamevalid());
+  }, [userName]);
+
+  useEffect(() => {
+    setIsPhoneNumberValid(checkPhoneNumbervalid());
+  }, [phoneNumber]);
 
   return (
     <div className="big-card details-form-div full-screen-mode">
@@ -42,17 +72,17 @@ function DetailsForm({ setSlide, slide }) {
           className="deatils-inputs"
           placeholder="שם פרטי ושם משפחה"
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <br />
         <input
-          className="deatils-inputs"
+          className="deatils-inputs phone-deatils-inputs"
           id="phone"
           placeholder="מספר טלפון"
           type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
         <br />
       </form>
