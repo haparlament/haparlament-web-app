@@ -9,15 +9,14 @@ import {
   setSession,
 } from "./../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
 import {
-  selectPopupObject,
-  setPopupObject,
+  openPopup,
+  closePopup,
 } from "../stateManagement/modules/popupObject/popupObjectSlice";
 
 function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionSubscription = useSelector(selectSessionSubscription);
-  const popupObject = useSelector(selectPopupObject);
 
   const [days, setDays] = useState([
     { day: "ראשון", isPressed: false },

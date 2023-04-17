@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles.css/SubmitFeelings.css";
 import { useDispatch } from "react-redux";
 import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
-import {
-  selectPopupObject,
-  setPopupObject,
-} from "../../stateManagement/modules/popupObject/popupObjectSlice";
+import { openPopup } from "../../stateManagement/modules/popupObject/popupObjectSlice";
 
 function SubmitFeelings({
   imgID,

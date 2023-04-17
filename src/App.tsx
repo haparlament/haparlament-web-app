@@ -25,7 +25,7 @@ function App() {
     <BrowserRouter>
 
       <div className="container">
-        {popupObject.title && <Popup
+        {popupObject && <Popup
           {...popupObject}
         />}
         <Header></Header>

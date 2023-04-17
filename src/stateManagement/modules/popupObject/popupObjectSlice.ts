@@ -9,12 +9,7 @@ interface PopupObjectState {
 
 // Define the initial state using that type
 const initialState: PopupObjectState = {
-  data: {
-    title:"",
-    text:"",
-    handleConfirm:null,
-    handleCancel:null,
-  }
+  data: null
 }
 
 export const popupObjectSlice = createSlice({
@@ -22,16 +17,19 @@ export const popupObjectSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setPopupObject: (state, action: PayloadAction<PopupObjectState['data']>) => {
+    openPopup: (state, action: PayloadAction<PopupObjectState['data']>) => {
       state.data = {
         ...state.data,
         ...action.payload
       }
     },
+    closePopup: (state) => {
+      state.data = null;
+    },
   },
 })
 
-export const { setPopupObject } = popupObjectSlice.actions
+export const { openPopup, closePopup } = popupObjectSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectPopupObject = (state: RootState) => state.popupObject.data
