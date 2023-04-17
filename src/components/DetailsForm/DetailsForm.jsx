@@ -8,7 +8,7 @@ import { setSession } from "./../../stateManagement/modules/sessionSubscription/
 import {
   closePopup,
   openPopup,
-} from "../../stateManagement/modules/popupObject/popupObjectSlice";
+} from "../../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function DetailsForm({ setSlide, slide }) {
   const navigate = useNavigate();

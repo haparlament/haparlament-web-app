@@ -3,21 +3,21 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../store'
 
 // Define a type for the slice state
-interface PopupObjectState {
+interface PopupInfoState {
   data: any
 }
 
 // Define the initial state using that type
-const initialState: PopupObjectState = {
+const initialState: PopupInfoState = {
   data: null
 }
 
-export const popupObjectSlice = createSlice({
-  name: 'popupObject',
+export const popupInfoSlice = createSlice({
+  name: 'popupInfo',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    openPopup: (state, action: PayloadAction<PopupObjectState['data']>) => {
+    openPopup: (state, action: PayloadAction<PopupInfoState['data']>) => {
       state.data = {
         ...state.data,
         ...action.payload
@@ -29,9 +29,9 @@ export const popupObjectSlice = createSlice({
   },
 })
 
-export const { openPopup, closePopup } = popupObjectSlice.actions
+export const { openPopup, closePopup } = popupInfoSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectPopupObject = (state: RootState) => state.popupObject.data
+export const selectPopupInfo = (state: RootState) => state.popupInfo.data
 
-export default popupObjectSlice.reducer
+export default popupInfoSlice.reducer

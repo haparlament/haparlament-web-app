@@ -12,21 +12,21 @@ import Popup from "./components/Popup"
 import { useSelector } from "react-redux";
 
 import {
-  selectPopupObject
-} from "./stateManagement/modules/popupObject/popupObjectSlice";
+  selectPopupInfo
+} from "./stateManagement/modules/popupInfo/popupInfoSlice";
 
 
 function App() {
   const [slide, setSlide] = useState(-1);
-  const popupObject = useSelector(selectPopupObject);
+  const popupInfo = useSelector(selectPopupInfo);
 
 
   return (
     <BrowserRouter>
 
       <div className="container">
-        {popupObject && <Popup
-          {...popupObject}
+        {popupInfo && <Popup
+          {...popupInfo}
         />}
         <Header></Header>
         <div className="body">

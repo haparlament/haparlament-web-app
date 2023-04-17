@@ -11,7 +11,7 @@ import {
 import {
   openPopup,
   closePopup,
-} from "../stateManagement/modules/popupObject/popupObjectSlice";
+} from "../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
