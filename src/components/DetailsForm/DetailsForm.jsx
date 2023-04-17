@@ -20,31 +20,18 @@ function DetailsForm({ setSlide, slide }) {
   const [isUserNameValid, setIsUserNameValid] = useState(false);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
 
+  const [showNotValidUserName, setShowNotValidUserName] = useState(false);
+  const [showNotValidPhoneNumber, setShowNotValidPhoneNumber] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isUserNameValid) {
-      dispatch(
-        openPopup({
-          title: "חלק מהפרטים אינם תקינים",
-          text: "אנא תקנו את השם שהכנסתם",
-          handleConfirm: () => {
-            dispatch(closePopup());
-            return;
-          },
-        })
-      );
-    } else if (!isPhoneNumberValid) {
-      dispatch(
-        openPopup({
-          title: "חלק מהפרטים אינם תקינים",
-          text: "אנא תקנו את מספר הטלפון שהכנסתם",
-          handleConfirm: () => {
-            dispatch(closePopup());
-            return;
-          },
-        })
-      );
-    } else {
+      setShowNotValidUserName(true);
+    }
+    if (!isPhoneNumberValid) {
+      setShowNotValidPhoneNumber(true);
+    }
+    if (isUserNameValid && isPhoneNumberValid) {
       dispatch(
         setSession({
           phoneNumber: phoneNumber,
@@ -98,6 +85,7 @@ function DetailsForm({ setSlide, slide }) {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
+        {showNotValidUserName && !isUserNameValid && <span>השם אינו תקין</span>}
         <br />
         <input
           className="deatils-inputs phone-deatils-inputs"
@@ -107,6 +95,9 @@ function DetailsForm({ setSlide, slide }) {
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
+        {showNotValidPhoneNumber && !isPhoneNumberValid && (
+          <span>מספר הטלפון אינו תקין</span>
+        )}
         <br />
       </form>
       <div className="icons-div">
