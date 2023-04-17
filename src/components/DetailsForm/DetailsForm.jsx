@@ -6,8 +6,8 @@ import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
 import { useDispatch } from "react-redux";
 import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
 import {
-  selectPopupObject,
-  setPopupObject,
+  closePopup,
+  openPopup,
 } from "../../stateManagement/modules/popupObject/popupObjectSlice";
 
 function DetailsForm({ setSlide, slide }) {
@@ -22,15 +22,38 @@ function DetailsForm({ setSlide, slide }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isUserNameValid || !isPhoneNumberValid) return;
-    dispatch(
-      setSession({
-        phoneNumber: phoneNumber,
-        userName: userName,
-      })
-    );
-    setSlide(slide + 1);
-    navigate("/time-selection");
+    if (!isUserNameValid) {
+      dispatch(
+        openPopup({
+          title: "חלק מהפרטים אינם תקינים",
+          text: "אנא תקנו את השם שהכנסתם",
+          handleConfirm: () => {
+            dispatch(closePopup());
+            return;
+          },
+        })
+      );
+    } else if (!isPhoneNumberValid) {
+      dispatch(
+        openPopup({
+          title: "חלק מהפרטים אינם תקינים",
+          text: "אנא תקנו את מספר הטלפון שהכנסתם",
+          handleConfirm: () => {
+            dispatch(closePopup());
+            return;
+          },
+        })
+      );
+    } else {
+      dispatch(
+        setSession({
+          phoneNumber: phoneNumber,
+          userName: userName,
+        })
+      );
+      setSlide(slide + 1);
+      navigate("/time-selection");
+    }
   };
 
   const checkPhoneNumbervalid = () => {
