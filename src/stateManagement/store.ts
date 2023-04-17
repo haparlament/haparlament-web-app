@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import sessionSubscriptionReducer from './modules/sessionSubscription/sessionSubscriptionSlice';
+import popupObjectReducer from './modules/popupObject/popupObjectSlice'
 
 export const store = configureStore({
   reducer: {
     sessionSubscription: sessionSubscriptionReducer,
+    popupObject: popupObjectReducer,
   },
 })
 

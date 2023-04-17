@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "../../styles.css/DetailsForm.scss";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
 import {
-  setSession
-} from './../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice';
+  selectPopupObject,
+  setPopupObject,
+} from "../../stateManagement/modules/popupObject/popupObjectSlice";
+
 function DetailsForm({ setSlide, slide }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,9 +20,12 @@ function DetailsForm({ setSlide, slide }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setPhone("972" + phone.substring(1));
-    dispatch(setSession({
-      phoneNumber: phone, userName: name
-    }));
+    dispatch(
+      setSession({
+        phoneNumber: phone,
+        userName: name,
+      })
+    );
     setSlide(slide + 1);
     navigate("/time-selection");
   };

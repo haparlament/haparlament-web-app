@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Popup from "../components/Popup";
 import "../../src/styles.css/ChooseTime.css";
 import { TwoLinesLeft } from "../styles.css/icons.svg/icons";
 import { postSessionRequest } from "../utils/session_request";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectSessionSubscription,
-  setSession
-} from './../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice';
+  setSession,
+} from "./../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
+import {
+  selectPopupObject,
+  setPopupObject,
+} from "../stateManagement/modules/popupObject/popupObjectSlice";
 
 function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionSubscription = useSelector(selectSessionSubscription);
+  const popupObject = useSelector(selectPopupObject);
 
   const [days, setDays] = useState([
     { day: "ראשון", isPressed: false },
@@ -33,56 +37,39 @@ function ChooseTime({ setSlide, slide }) {
   ]);
 
   const handleDay = (index, day) => {
-    const newDaysArr = [...days]
+    const newDaysArr = [...days];
     newDaysArr[index] = {
       day: newDaysArr[index].day,
-      isPressed: !newDaysArr[index].isPressed
-    }
-    setDays(newDaysArr)
-    dispatch(setSession({
-      day: day.day
-    }));
+      isPressed: !newDaysArr[index].isPressed,
+    };
+    setDays(newDaysArr);
+    dispatch(
+      setSession({
+        day: day.day,
+      })
+    );
   };
 
   const handleHour = (index, hour) => {
-    const newHoursArr = [...hours]
+    const newHoursArr = [...hours];
     newHoursArr[index] = {
       hour: newHoursArr[index].hour,
-      isPressed: !newHoursArr[index].isPressed
-    }
-    setHours(newHoursArr)
-    // hour.isPressed = !hour.isPressed;
-    dispatch(setSession({
-      hourRange: hour.hour
-    }));
-  };
-
-  const [showPopup, setShowPopup] = useState(false);
-  const [showChooseTimePopUp, setShowChooseTimePopUp] = useState(false);
-
-  const handleConfirm = () => {
-    console.log("Confirmed!");
-    setShowPopup(false);
-    setSlide(0);
-    navigate("/emotions-selection");
-  };
-
-  const handleCancel = () => {
-    console.log("Canceled!");
-    setShowPopup(false);
-  };
-
-  const handleChooseTime = () => {
-    setShowChooseTimePopUp(false);
+      isPressed: !newHoursArr[index].isPressed,
+    };
+    setHours(newHoursArr);
+    dispatch(
+      setSession({
+        hourRange: hour.hour,
+      })
+    );
   };
 
   const handleSubmit = (session) => {
-    console.log('handleSubmit', session)
+    console.log("handleSubmit", session);
     if (session.hourRange === "") {
-      setShowChooseTimePopUp(true);
     } else {
       postSessionRequest(session);
-      setShowPopup(true);
+      navigate("/emotions-selection");
     }
   };
 
@@ -139,31 +126,6 @@ function ChooseTime({ setSlide, slide }) {
           שלח פרטים
         </button>
         <button>{TwoLinesLeft}</button>
-      </div>
-      <div>
-        {showPopup && (
-          <>
-            <div className="darken"></div>
-            <Popup
-              title="מעולה! פרטיך נשלחו"
-              text="בקרוב ניצור איתך קשר בוואטסאפ ונקשר אותך לשיחה עם אדם עם תחושות שונות בנושא שבחרת"
-              handleConfirm={handleConfirm}
-              handleCancel={handleCancel}
-              keepCancelButton={true}
-            />
-          </>
-        )}
-        {showChooseTimePopUp && (
-          <>
-            <div className="darken"></div>
-            <Popup
-              title="אנא בחר זמן שבו תהייה פנוי לשיחה"
-              text="כדי שנוכל ליצור איתך קשר בזמן שמתאים לך"
-              handleConfirm={handleChooseTime}
-              handleCancel={handleChooseTime}
-            />
-          </>
-        )}
       </div>
     </div>
   );
