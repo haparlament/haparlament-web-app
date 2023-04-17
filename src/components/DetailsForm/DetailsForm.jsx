@@ -17,42 +17,32 @@ function DetailsForm({ setSlide, slide }) {
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const [isUserNameValid, setIsUserNameValid] = useState(false);
-  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
-
-  const [showNotValidUserName, setShowNotValidUserName] = useState(false);
-  const [showNotValidPhoneNumber, setShowNotValidPhoneNumber] = useState(false);
+  const [isUserNameValid, setIsUserNameValid] = useState(true);
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isUserNameValid) {
-      setShowNotValidUserName(true);
+    if (!checkUserNamevalid()) {
+      setIsUserNameValid(false);
+      return;
     }
-    if (!isPhoneNumberValid) {
-      setShowNotValidPhoneNumber(true);
+    setIsUserNameValid(true);
+    if (!checkPhoneNumbervalid()) {
+      setIsPhoneNumberValid(false);
+      return;
     }
-    if (isUserNameValid && isPhoneNumberValid) {
-      dispatch(
-        setSession({
-          phoneNumber: phoneNumber,
-          userName: userName,
-        })
-      );
-      setSlide(slide + 1);
-      navigate("/time-selection");
-    }
+    setIsPhoneNumberValid(true);
+    dispatch(
+      setSession({
+        phoneNumber: phoneNumber,
+        userName: userName,
+      })
+    );
+    setSlide(slide + 1);
+    navigate("/time-selection");
   };
 
   const checkPhoneNumbervalid = () => {
-    // regex know this templates:
-    // 052-111-2222
-    // 052-1112222
-    // 0521112222
-    // 052 111 2222
-    // 972521112222
-    // 972-52-111-2222
-    // +972-52-111-2222
-    // 00972521112222
     const phoneNumberRegExp =
       /^(\+972|0|972|00972)[\- ]?([1-9]\d{1})[\- ]?([1-9]\d{6}|\d{3}[\- ]?\d{4})$/;
     return phoneNumberRegExp.test(phoneNumber);
@@ -61,14 +51,6 @@ function DetailsForm({ setSlide, slide }) {
   const checkUserNamevalid = () => {
     return userName.length > 3 && userName.length < 50;
   };
-
-  useEffect(() => {
-    setIsUserNameValid(checkUserNamevalid());
-  }, [userName]);
-
-  useEffect(() => {
-    setIsPhoneNumberValid(checkPhoneNumbervalid());
-  }, [phoneNumber]);
 
   return (
     <div className="big-card details-form-div full-screen-mode">
@@ -85,7 +67,7 @@ function DetailsForm({ setSlide, slide }) {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
-        {showNotValidUserName && !isUserNameValid && (
+        {!isUserNameValid && (
           <span className="not-valid-text">השם אינו תקין</span>
         )}
         <br />
@@ -97,7 +79,7 @@ function DetailsForm({ setSlide, slide }) {
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        {showNotValidPhoneNumber && !isPhoneNumberValid && (
+        {!isPhoneNumberValid && (
           <span className="not-valid-text">מספר הטלפון אינו תקין</span>
         )}
         <br />
