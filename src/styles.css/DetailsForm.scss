@@ -1,6 +1,7 @@
 .details-form-div{
   display: flex;
   flex-direction: column;
+  background-color: gray;
 }
 
 .details-form-headers{
@@ -12,6 +13,10 @@
   gap: 10px;
   margin-top: 8.5vh;
   width: 75%;
+
+  h4 {
+    font-size: 0.9rem;
+  }
 }
 
 .details-form-form{
@@ -37,6 +42,7 @@
   border-radius: 10px;
   background-color: white;
   opacity: 1;
+  font-family: Assistant;
 }
 
 .left-arrow-icon{
@@ -50,4 +56,12 @@
   justify-content: space-between;
   align-items: center;
   gap: 8rem;
+}
+
+.phone-deatils-inputs{
+  direction: ltr;
+}
+
+.not-valid-text{
+  color: rgb(196, 8, 8);
 }

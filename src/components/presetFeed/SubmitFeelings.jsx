@@ -1,50 +1,52 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css/SubmitFeelings.css";
+import { useDispatch } from "react-redux";
+import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
+import {
+  closePopup,
+  openPopup,
+} from "../../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function SubmitFeelings({
   imgID,
   selectedEmotionId,
-  setjsonObject,
   setSlide,
   slide,
   handlePass,
 }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedEmotionId) return;
-
-    setjsonObject((prevState) => {
-      return {
-        ...prevState,
+    dispatch(
+      setSession({
         imageId: imgID.toString(),
         feeling: selectedEmotionId.toString(),
-      };
-    });
+      })
+    );
     setSlide(slide + 1);
     navigate("/details-form");
   };
 
   return (
-    <div>
-      <div className="lets-talk-div">
-        <button
-          className="lets-talk-button pass-button"
-          onClick={() => handlePass()}
-        >
-          דלג
-        </button>
-        <button
-          className={`lets-talk-button ${
-            selectedEmotionId ? null : "button-disabled"
-          }`}
-          onClick={handleSubmit}
-        >
-          בואו נדבר
-        </button>
-      </div>
+    <div className="lets-talk-div">
+      <button
+        className="lets-talk-button pass-button"
+        onClick={() => handlePass()}
+      >
+        דלג
+      </button>
+      <button
+        className={`lets-talk-button ${
+          selectedEmotionId ? null : "button-disabled"
+        }`}
+        onClick={handleSubmit}
+      >
+        בואו נדבר
+      </button>
     </div>
   );
 }

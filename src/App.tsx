@@ -1,31 +1,33 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import DetailsForm from "./components/DetailsForm/DetailsForm";
 import ChooseTime from "./components/ChooseTime";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import ImageContent from "./components/presetFeed/ImageContent";
-import "./styles.css/App.css";
+import "./styles.css/App.scss";
 
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import Popup from "./components/Popup"
+import { useSelector } from "react-redux";
+
+import {
+  selectPopupInfo
+} from "./stateManagement/modules/popupInfo/popupInfoSlice";
+
 
 function App() {
-  const initJsonObject = {
-    imageId: "",
-    feeling: "",
-    username: "",
-    phoneNumber: "",
-    day: "",
-    hourRange: "",
-  };
-
-  const [jsonObject, setjsonObject] = useState(initJsonObject);
   const [slide, setSlide] = useState(-1);
+  const popupInfo = useSelector(selectPopupInfo);
+
 
   return (
     <BrowserRouter>
+
       <div className="container">
+        {popupInfo && <Popup
+          {...popupInfo}
+        />}
         <Header></Header>
         <div className="body">
           <Routes>
@@ -37,7 +39,6 @@ function App() {
               path="/emotions-selection"
               element={
                 <ImageContent
-                  setjsonObject={setjsonObject}
                   slide={slide}
                   setSlide={setSlide}
                 />
@@ -47,7 +48,6 @@ function App() {
               path="/details-form"
               element={
                 <DetailsForm
-                  setjsonObject={setjsonObject}
                   setSlide={setSlide}
                   slide={slide}
                 />
@@ -57,8 +57,6 @@ function App() {
               path="/time-selection"
               element={
                 <ChooseTime
-                  setjsonObject={setjsonObject}
-                  jsonObject={jsonObject}
                   setSlide={setSlide}
                   slide={slide}
                 />
@@ -74,46 +72,9 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer></Footer>
       </div>
     </BrowserRouter>
   );
 }
 
 export default App;
-
-// In case deciding that routes isn't secured
-// users can jump directly to submission without filling in all needed details.
-
-// <div className="container">
-//   <Header></Header>
-
-//   <div className="body">
-//     {slide === -1 && <WelcomePage slide={slide} setSlide={setSlide} />}
-
-//     {slide === 0 && (
-//       <ImageContent
-//         setjsonObject={setjsonObject}
-//         slide={slide}
-//         setSlide={setSlide}
-//       />
-//     )}
-//     {/* {<OptionalPartner setjsonObject={setjsonObject} />} */}
-//     {slide === 1 && (
-//       <DetailsForm
-//         setjsonObject={setjsonObject}
-//         setSlide={setSlide}
-//         slide={slide}
-//       />
-//     )}
-//     {slide === 2 && (
-//       <ChooseTime
-//         setjsonObject={setjsonObject}
-//         jsonObject={jsonObject}
-//         setSlide={setSlide}
-//         slide={slide}
-//       />
-//     )}
-//   </div>
-//   <Footer></Footer>
-// </div>;

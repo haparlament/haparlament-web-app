@@ -31,14 +31,21 @@ The project is based on Firebase thus takes the repo structure from Google's Fir
 
 From `functions` folder:
 
-1. `npm install`
-2. `npm run serve`
-3. `npm run deploy`
+* Local development: 
+    1. `npm install`
+    2. `npm run serve`
+
+* Deploy:
+    `npm run deploy`
 
 #### Frontend
 
 From the root folder:
 
-1. `npm install`
-2. `npm start`
-3. `firebase deploy --only hosting`
+* Local development: 
+    1. `npm install`
+    2. `npm start`
+
+* Deploy:
+    - Go to `main` branch and `git pull`
+    - `npm run build && firebase deploy --only hosting`

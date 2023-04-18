@@ -11,14 +11,14 @@ export const letsTalk = (
       <path
         d="M26.1709 9.79595L28.391 8.092C29.0488 7.58715 29.9998 8.05611 29.9998 8.88528V15.1148C29.9998 15.944 29.0488 16.4129 28.391 15.9081L26.1709 14.2041"
         stroke="#3E3A37"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <path
         d="M26.1711 9.66429V9C26.1711 7.34315 24.8279 6 23.1711 6H15.75C14.0931 6 12.75 7.34315 12.75 9V15C12.75 16.6569 14.0931 18 15.75 18H23.1711C24.8279 18 26.1711 16.6569 26.1711 15V14.6464"
         stroke="#3E3A37"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
       <circle cx="22.125" cy="13.875" r="1.125" fill="#3E3A37" />
       <path
@@ -68,16 +68,16 @@ export const LeftArrow = (
     <path
       d="M11.8601 20.0001L27.3524 20.0001"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M19.5283 27.4261L11.86 20.0015L19.5283 12.5769"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -93,6 +93,8 @@ export const TwoLinesRight = (
     <rect
       x="150"
       y="4.00006"
+      rx="2"
+      ry="2"
       width="32"
       height="4"
       transform="rotate(-180 150 4.00006)"
@@ -102,6 +104,8 @@ export const TwoLinesRight = (
       opacity="0.3"
       x="110"
       y="4.00006"
+      rx="2"
+      ry="2"
       width="32"
       height="4"
       transform="rotate(-180 110 4.00006)"
@@ -122,6 +126,8 @@ export const TwoLinesLeft = (
       opacity="0.3"
       x="150"
       y="4.00006"
+      rx="2"
+      ry="2"
       width="32"
       height="4"
       transform="rotate(-180 150 4.00006)"
@@ -130,6 +136,8 @@ export const TwoLinesLeft = (
     <rect
       x="110"
       y="4.00006"
+      rx="2"
+      ry="2"
       width="32"
       height="4"
       transform="rotate(-180 110 4.00006)"

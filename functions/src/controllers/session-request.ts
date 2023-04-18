@@ -22,7 +22,7 @@ export const getAllSessionRequests = async (req: Request, res: Response) => {
 
 export const createSessionRequest = async (req: Request, res: Response) => {
     const {
-        username,
+        userName,
         imageId,
         feeling,
         phoneNumber,
@@ -31,7 +31,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
     } = req.body;
     const now = new Date();
     const createsessionRequestDto = new CreateSessionRequestDto(
-        username,
+        userName,
         imageId,
         feeling,
         phoneNumber,
@@ -53,7 +53,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
         await firestore.create(SESSION_REQUESTS, createsessionRequestDto.json());
 
         const airTableDoc = {
-            UserName: createsessionRequestDto.username,
+            UserName: createsessionRequestDto.userName,
             ImageID: createsessionRequestDto.imageId,
             Feeling: createsessionRequestDto.feeling,
             PhoneNumber: createsessionRequestDto.phoneNumber,
