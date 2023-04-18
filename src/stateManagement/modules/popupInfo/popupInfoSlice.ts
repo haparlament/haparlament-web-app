@@ -23,8 +23,8 @@ export const popupInfoSlice = createSlice({
         ...action.payload
       }
     },
-    closePopup: (state) => {
-      state.data = null;
+    closePopup: (state, action) => {
+      state.data = null;      
     },
   },
 })

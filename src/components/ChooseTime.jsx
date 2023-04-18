@@ -82,6 +82,20 @@ function ChooseTime({ setSlide, slide }) {
       setIsHourRangeValid(false);
       return;
     }
+    const { isSuccess } = await popupService.openPopup(dispatch, {
+      title: "מעולה! פרטייך נשלחו",
+      text: "בקרוב ניצור איתך קשר בוואטסאפ ונקשר אותך לשיחה עם אדם עם תחושות שונות בנושא שבחרת",
+      // handleConfirm: () => handlePostSessionRequest(),
+      // handleCancel: () => {
+      //   dispatch(closePopup());
+      // },
+    })
+
+    if (isSuccess) {
+      handlePostSessionRequest()
+    } else {
+      dispatch(closePopup());
+    }
 
     dispatch(
       openPopup({
