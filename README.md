@@ -47,4 +47,5 @@ From the root folder:
     2. `npm start`
 
 * Deploy:
-    `npm run build && firebase deploy --only hosting`
+    - Go to `main` branch and `git pull`
+    - `npm run build && firebase deploy --only hosting`
