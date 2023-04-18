@@ -8,6 +8,10 @@ import {
   selectSessionSubscription,
   setSession,
 } from "./../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
+import {
+  closePopup,
+  openPopup,
+} from "../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
@@ -64,6 +68,7 @@ function ChooseTime({ setSlide, slide }) {
 
   const handleSubmit = (session) => {
     console.log("handleSubmit", session);
+
     if (days.some((day) => day.isPressed === true)) {
       setIsDaysValid(true);
     } else {
@@ -77,8 +82,22 @@ function ChooseTime({ setSlide, slide }) {
       setIsHourRangeValid(false);
       return;
     }
-    postSessionRequest(session);
-    navigate("/emotions-selection");
+
+    dispatch(
+      openPopup({
+        title: "מעולה! פרטייך נשלחו",
+        text: "בקרוב ניצור איתך קשר בוואטסאפ ונקשר אותך לשיחה עם אדם עם תחושות שונות בנושא שבחרת",
+        handleConfirm: () => {
+          postSessionRequest(session);
+          dispatch(closePopup());
+
+          navigate("/emotions-selection");
+        },
+        handleCancel: () => {
+          dispatch(closePopup());
+        },
+      })
+    );
   };
 
   return (
