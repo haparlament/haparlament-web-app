@@ -75,3 +75,8 @@
   font-size: 1rem;
 }
 
+.not-valid-input{
+  color: rgb(196, 8, 8);
+  padding-left: 10%
+;
+}

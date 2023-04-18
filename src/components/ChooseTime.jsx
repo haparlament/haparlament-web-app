@@ -14,6 +14,9 @@ function ChooseTime({ setSlide, slide }) {
   const dispatch = useDispatch();
   const sessionSubscription = useSelector(selectSessionSubscription);
 
+  const [isDaysValid, setIsDaysValid] = useState(true);
+  const [isHourRangeValid, setIsHourRangeValid] = useState(true);
+
   const [days, setDays] = useState([
     { day: "ראשון", isPressed: false },
     { day: "שני", isPressed: false },
@@ -61,11 +64,21 @@ function ChooseTime({ setSlide, slide }) {
 
   const handleSubmit = (session) => {
     console.log("handleSubmit", session);
-    if (session.hourRange === "") {
+    if (days.some((day) => day.isPressed === true)) {
+      setIsDaysValid(true);
     } else {
-      postSessionRequest(session);
-      navigate("/emotions-selection");
+      setIsDaysValid(false);
+      return;
     }
+
+    if (hours.some((hour) => hour.isPressed === true)) {
+      setIsHourRangeValid(true);
+    } else {
+      setIsHourRangeValid(false);
+      return;
+    }
+    postSessionRequest(session);
+    navigate("/emotions-selection");
   };
 
   return (
@@ -94,6 +107,10 @@ function ChooseTime({ setSlide, slide }) {
             ))}
           </div>
         </div>
+        {!isDaysValid && (
+          <span className="not-valid-input">אנא בחרו לפחות יום אחד</span>
+        )}
+
         <div className="days-div">
           <span className="time-header">שעות</span>
           <div className="time-buttons-div">
@@ -110,6 +127,9 @@ function ChooseTime({ setSlide, slide }) {
             ))}
           </div>
         </div>
+        {!isHourRangeValid && (
+          <span className="not-valid-input">אנא בחרו לפחות טווח שעות אחד</span>
+        )}
       </div>
 
       <div className="send-details-div">
