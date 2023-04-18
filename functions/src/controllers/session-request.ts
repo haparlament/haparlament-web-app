@@ -4,9 +4,11 @@ import { validateDto } from '../services/validation-service';
 import { CreateSessionRequestDto } from '../dto/session-request';
 import logger from '../utils/logger';
 import { isEmpty } from 'lodash';
-import { syncAirtable } from '../cron-jobs/air-table';
+import airtable from '../utils/airtable-client';
+import { config } from '../config';
 
 export const SESSION_REQUESTS = 'session_requests';
+const AIRTABLE_TABLE_ID = 'Session Request';
 
 export const getAllSessionRequests = async (req: Request, res: Response) => {
     try {
@@ -49,6 +51,16 @@ export const createSessionRequest = async (req: Request, res: Response) => {
 
     try {
         await firestore.create(SESSION_REQUESTS, createsessionRequestDto.json());
+
+        const airTableDoc = {
+            UserName: createsessionRequestDto.username,
+            ImageID: createsessionRequestDto.imageId,
+            Feeling: createsessionRequestDto.feeling,
+            PhoneNumber: createsessionRequestDto.phoneNumber,
+            Day: createsessionRequestDto.day,
+            HourRange: createsessionRequestDto.hourRange,
+        };
+        await airtable.create(config.airtable.databaseId, AIRTABLE_TABLE_ID, airTableDoc);
         return res.status(200).json(createsessionRequestDto);
     } catch (error) {
         logger.error(error);

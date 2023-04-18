@@ -12,7 +12,7 @@ export const syncAirtable = async () => {
     yesterday.setHours(0, 0, 0, 0);
     const sessionRequests = await firestore.getAllByDate(SESSION_REQUESTS, '>=', yesterday);
 
-    const createSessionRequestsTasks = sessionRequests.map((doc) => {
+    sessionRequests.map(async (doc) => {
         const airTableDoc = {
             UserName: doc.username,
             ImageID: doc.imageId,
@@ -21,12 +21,12 @@ export const syncAirtable = async () => {
             Day: doc.day,
             HourRange: doc.hourRange,
         };
-        return airtable.create(config.airtable.databaseId, AIRTABLE_TABLE_ID, airTableDoc);
-    });
+        try {
+            await airtable.create(config.airtable.databaseId, AIRTABLE_TABLE_ID, airTableDoc);
+        } catch (error) {
+            logger.error(error);
+        }
 
-    try {
-        await Promise.all(createSessionRequestsTasks);
-    } catch (error) {
-        logger.error(error);
-    }
+        await new Promise((resolve) => setTimeout(resolve, 500));
+    });
 };
