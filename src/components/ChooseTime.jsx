@@ -87,17 +87,30 @@ function ChooseTime({ setSlide, slide }) {
       openPopup({
         title: "מעולה! פרטייך נשלחו",
         text: "בקרוב ניצור איתך קשר בוואטסאפ ונקשר אותך לשיחה עם אדם עם תחושות שונות בנושא שבחרת",
-        handleConfirm: () => {
-          postSessionRequest(session);
-          dispatch(closePopup());
-
-          navigate("/emotions-selection");
-        },
+        handleConfirm: () => handlePostSessionRequest(),
         handleCancel: () => {
           dispatch(closePopup());
         },
       })
     );
+
+    const handlePostSessionRequest = () => {
+      postSessionRequest(session)
+        .then(() => {
+          dispatch(closePopup());
+          navigate("/confirmation");
+        })
+        .catch(() => {
+          dispatch(closePopup());
+          dispatch(
+            openPopup({
+              title: "הפרטים לא נשלחו",
+              text: "קרתה תקלה בעת השליחה",
+              handleConfirm: () => dispatch(closePopup()),
+            })
+          );
+        });
+    };
   };
 
   return (
