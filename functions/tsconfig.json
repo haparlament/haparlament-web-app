@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
   },
   "compileOnSave": true,
   "include": [

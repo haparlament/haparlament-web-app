@@ -26,3 +26,5 @@ build
 .firebaserc
 
 .DS_Store
+
+.env

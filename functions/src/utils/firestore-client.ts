@@ -23,6 +23,19 @@ class FirestoreClient {
                 throw error;
             });
     }
+
+    async getAllByDate(
+        collection: string,
+        operator: admin.firestore.WhereFilterOp,
+        date: Date,
+    ): Promise<admin.firestore.DocumentData[]> {
+        return this.db.collection(collection).where('updatedAt', operator, date).get()
+            .then((querySnapshot) =>
+                querySnapshot.docs.map((doc) => doc.data()))
+            .catch((error) => {
+                throw error;
+            });
+    }
 }
 
 export default new FirestoreClient();
