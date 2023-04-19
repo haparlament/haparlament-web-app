@@ -64,4 +64,15 @@ export class CreateSessionRequestDto {
             createdAt: this.createdAt,
         };
     }
+
+    airtable() {
+        return {
+            UserName: this.userName,
+            ImageID: this.imageId,
+            Feeling: this.feeling,
+            PhoneNumber: this.phoneNumber,
+            Day: this.day,
+            HourRange: this.hourRange,
+        };
+    }
 }

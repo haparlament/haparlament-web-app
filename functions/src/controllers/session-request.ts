@@ -51,16 +51,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
 
     try {
         await firestore.create(SESSION_REQUESTS, createsessionRequestDto.json());
-
-        const airTableDoc = {
-            UserName: createsessionRequestDto.userName,
-            ImageID: createsessionRequestDto.imageId,
-            Feeling: createsessionRequestDto.feeling,
-            PhoneNumber: createsessionRequestDto.phoneNumber,
-            Day: createsessionRequestDto.day,
-            HourRange: createsessionRequestDto.hourRange,
-        };
-        await airtable.create(config.airtable.databaseId, AIRTABLE_TABLE_ID, airTableDoc);
+        await airtable.create(config.airtable.databaseId, AIRTABLE_TABLE_ID, createsessionRequestDto.airtable());
         return res.status(200).json(createsessionRequestDto);
     } catch (error) {
         logger.error(error);
