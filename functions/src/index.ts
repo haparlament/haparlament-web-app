@@ -9,7 +9,7 @@ import * as bodyParser from 'body-parser';
 import sessionRequestRoutes from './routes/api/session-request';
 
 const app: Express = express();
-app.use(cors({ origin: ['https://haparlament.web.app', 'https://haparlament.firebaseapp.com/'] }));
+app.use(cors({ origin: ['https://app.haparlament.me'] }));
 
 // app.use('/v1/user', userRoutes);
 // app.use('/v1/session', sessionRoutes);
