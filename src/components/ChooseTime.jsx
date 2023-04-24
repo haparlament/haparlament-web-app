@@ -8,11 +8,18 @@ import {
   selectSessionSubscription,
   setSession,
 } from "./../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
+import {
+  closePopup,
+  openPopup,
+} from "../stateManagement/modules/popupInfo/popupInfoSlice";
 
 function ChooseTime({ setSlide, slide }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionSubscription = useSelector(selectSessionSubscription);
+
+  const [isDaysValid, setIsDaysValid] = useState(true);
+  const [isHourRangeValid, setIsHourRangeValid] = useState(true);
 
   const [days, setDays] = useState([
     { day: "ראשון", isPressed: false },
@@ -61,11 +68,49 @@ function ChooseTime({ setSlide, slide }) {
 
   const handleSubmit = (session) => {
     console.log("handleSubmit", session);
-    if (session.hourRange === "") {
+
+    if (days.some((day) => day.isPressed === true)) {
+      setIsDaysValid(true);
     } else {
-      postSessionRequest(session);
-      navigate("/emotions-selection");
+      setIsDaysValid(false);
+      return;
     }
+
+    if (hours.some((hour) => hour.isPressed === true)) {
+      setIsHourRangeValid(true);
+    } else {
+      setIsHourRangeValid(false);
+      return;
+    }
+
+    dispatch(
+      openPopup({
+        title: "מעולה! פרטייך נשלחו",
+        text: "בקרוב ניצור איתך קשר בוואטסאפ ונקשר אותך לשיחה עם אדם עם תחושות שונות בנושא שבחרת",
+        handleConfirm: () => handlePostSessionRequest(),
+        handleCancel: () => {
+          dispatch(closePopup());
+        },
+      })
+    );
+
+    const handlePostSessionRequest = () => {
+      postSessionRequest(session)
+        .then(() => {
+          dispatch(closePopup());
+          navigate("/confirmation");
+        })
+        .catch(() => {
+          dispatch(closePopup());
+          dispatch(
+            openPopup({
+              title: "הפרטים לא נשלחו",
+              text: "קרתה תקלה בעת השליחה",
+              handleConfirm: () => dispatch(closePopup()),
+            })
+          );
+        });
+    };
   };
 
   return (
@@ -94,6 +139,10 @@ function ChooseTime({ setSlide, slide }) {
             ))}
           </div>
         </div>
+        {!isDaysValid && (
+          <span className="not-valid-input">אנא בחרו לפחות יום אחד</span>
+        )}
+
         <div className="days-div">
           <span className="time-header">שעות</span>
           <div className="time-buttons-div">
@@ -110,6 +159,9 @@ function ChooseTime({ setSlide, slide }) {
             ))}
           </div>
         </div>
+        {!isHourRangeValid && (
+          <span className="not-valid-input">אנא בחרו לפחות טווח שעות אחד</span>
+        )}
       </div>
 
       <div className="send-details-div">

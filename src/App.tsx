@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import {
   selectPopupInfo
 } from "./stateManagement/modules/popupInfo/popupInfoSlice";
+import ConfirmationPage from "./pages/ConfirmationPage";
 
 
 function App() {
@@ -59,6 +60,13 @@ function App() {
                 <ChooseTime
                   setSlide={setSlide}
                   slide={slide}
+                />
+              }
+            />
+            <Route
+              path="/confirmation"
+              element={
+                <ConfirmationPage
                 />
               }
             />
