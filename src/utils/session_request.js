@@ -1,21 +1,10 @@
-const BASE_API_URL = 'https://us-central1-haparlament.cloudfunctions.net/api/v1';
-
-class SessionRequest {
-    constructor(imageId, feeling, userName, phoneNumber, day, hourRange) {
-      this.imageId = imageId;
-      this.feeling = feeling;
-      this.userName = userName;
-      this.phoneNumber = phoneNumber;
-      this.day = day;
-      this.hourRange = hourRange;
-    }
-  }  
-
+// const BASE_API_URL = 'https://us-central1-haparlament.cloudfunctions.net/api/v1';
+const BASE_API_URL = 'http://localhost:5001/api/v1';
 
 async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
-      //mode: "cors", // no-cors, *cors, same-origin
+      mode: "cors", // no-cors, *cors, same-origin TODO only enable locally
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       //credentials: "same-origin", // include, *same-origin, omit
       headers: {

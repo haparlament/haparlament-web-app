@@ -1,16 +1,17 @@
 import React from "react";
 import "../../styles.css/Feelings.css";
-
+import { EMOTIONS } from "./../../constants";
 function Feelings({ selectedEmotionId, setSelectedEmotionId }) {
+
   const emotions = [
-    { id: 1, label: "כעס" },
-    { id: 2, label: "תקווה" },
-    { id: 3, label: "עצב" },
-    { id: 4, label: "שמחה" },
-    { id: 5, label: "תסכול" },
-    { id: 6, label: "אכזבה" },
-    { id: 7, label: "חיבה" },
-    { id: 8, label: "ייאוש" },
+    { id: EMOTIONS.ANGER, label: "כעס" },
+    { id: EMOTIONS.HOPE, label: "תקווה" },
+    { id: EMOTIONS.SADNESS, label: "עצב" },
+    { id: EMOTIONS.HAPPYNESS, label: "שמחה" },
+    { id: EMOTIONS.FRUSTRATION, label: "תסכול" },
+    { id: EMOTIONS.DISAPPOINTMENT, label: "אכזבה" },
+    { id: EMOTIONS.AFFECTION, label: "חיבה" },
+    { id: EMOTIONS.DESPERATION, label: "ייאוש" },
   ];
 
   const handleEmotionClick = (e, id) => {

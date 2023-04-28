@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString, IsMobilePhone, IsDate } from 'class-validator';
+import { TimeRange } from '../controllers/session-request';
 
 /**
 * Validates create session DTO.
@@ -9,15 +10,15 @@ export class CreateSessionRequestDto {
         imageId: string,
         feeling: string,
         phoneNumber: string,
-        day: string,
-        hourRange: string,
+        days: string[],
+        hourRanges: TimeRange[],
     ) {
         this.userName = userName;
         this.imageId = imageId;
         this.feeling = feeling;
         this.phoneNumber = phoneNumber;
-        this.day = day;
-        this.hourRange = hourRange;
+        this.days = days;
+        this.hoursRanges = hourRanges;
     }
 
     @IsNotEmpty()
@@ -37,12 +38,12 @@ export class CreateSessionRequestDto {
         phoneNumber: string;
 
     @IsNotEmpty()
-    @IsString()
-        day: string;
+    // @IsString()
+        days: string[];
 
     @IsNotEmpty()
-    @IsString()
-        hourRange: string;
+    // @IsString()
+    hoursRanges: TimeRange[];
 
     @IsNotEmpty()
     @IsDate()
@@ -58,8 +59,8 @@ export class CreateSessionRequestDto {
             imageId: this.imageId,
             feeling: this.feeling,
             phoneNumber: this.phoneNumber,
-            day: this.day,
-            hourRange: this.hourRange,
+            days: this.days,
+            hoursRanges: this.hoursRanges,
             updatedAt: this.updatedAt,
             createdAt: this.createdAt,
         };
@@ -71,8 +72,8 @@ export class CreateSessionRequestDto {
             ImageID: this.imageId,
             Feeling: this.feeling,
             PhoneNumber: this.phoneNumber,
-            Day: this.day,
-            HourRange: this.hourRange,
+            Days: this.days,
+            HourRanges: this.hoursRanges,
         };
     }
 }

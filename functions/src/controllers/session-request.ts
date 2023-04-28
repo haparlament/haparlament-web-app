@@ -19,24 +19,43 @@ export const getAllSessionRequests = async (req: Request, res: Response) => {
         res.status(500);
     }
 };
+interface Time {
+    hour: number,
+    minute: number
+}
+export interface TimeRange {
+    from: Time,
+    to: Time
+}
+interface SessionSubscriptionData {
+    imageEmotion: {
+      imageId: string,
+      emotion: string,
+    },
+    timeAvailability: {
+      days: string[],
+      hoursRanges: TimeRange[],
+    },
+    user: {
+      name: string,
+      phoneNumber: string,
+    }
+}
 
 export const createSessionRequest = async (req: Request, res: Response) => {
     const {
-        userName,
-        imageId,
-        feeling,
-        phoneNumber,
-        day,
-        hourRange,
-    } = req.body;
+        user,
+        timeAvailability,
+        imageEmotion,
+    } = req.body as SessionSubscriptionData;
     const now = new Date();
     const createsessionRequestDto = new CreateSessionRequestDto(
-        userName,
-        imageId,
-        feeling,
-        phoneNumber,
-        day,
-        hourRange
+        user.name,
+        imageEmotion.imageId,
+        imageEmotion.emotion,
+        user.phoneNumber,
+        timeAvailability.days,
+        timeAvailability.hoursRanges
     );
 
     // Due to some weird bug I can't set the below in the constructor so setting like this.

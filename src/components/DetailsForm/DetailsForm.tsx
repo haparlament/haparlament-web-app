@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css/DetailsForm.scss";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
-import { useDispatch } from "react-redux";
-import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
-import {
-  closePopup,
-  openPopup,
-} from "../../stateManagement/modules/popupInfo/popupInfoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSessionSubscription, setSession } from "../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
 
-function DetailsForm({ setSlide, slide }) {
+interface DetailsFormProps {
+  setSlide: (slideIndex: number) => void, slide: number 
+}
+function DetailsForm({ setSlide, slide }: DetailsFormProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const sessionSubscription = useSelector(selectSessionSubscription);
 
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -20,7 +20,7 @@ function DetailsForm({ setSlide, slide }) {
   const [isUserNameValid, setIsUserNameValid] = useState(true);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!checkUserNamevalid()) {
       setIsUserNameValid(false);
@@ -34,8 +34,11 @@ function DetailsForm({ setSlide, slide }) {
     setIsPhoneNumberValid(true);
     dispatch(
       setSession({
-        phoneNumber: phoneNumber,
-        userName: userName,
+        ...sessionSubscription,
+        user: {
+          phoneNumber: phoneNumber,
+          name: userName,
+        }
       })
     );
     setSlide(slide + 1);

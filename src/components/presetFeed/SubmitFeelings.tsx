@@ -1,12 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles.css/SubmitFeelings.css";
-import { useDispatch } from "react-redux";
-import { setSession } from "./../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
-import {
-  closePopup,
-  openPopup,
-} from "../../stateManagement/modules/popupInfo/popupInfoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSessionSubscription, setSession } from "../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
+
+interface SubmitFeelingsProps {
+  imgID: string,
+  selectedEmotionId: string,
+  setSlide: (index: number) => void
+  slide: number,
+  handlePass: () => void
+}
 
 function SubmitFeelings({
   imgID,
@@ -14,17 +18,21 @@ function SubmitFeelings({
   setSlide,
   slide,
   handlePass,
-}) {
+}: SubmitFeelingsProps) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const sessionSubscription = useSelector(selectSessionSubscription);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!selectedEmotionId) return;
     dispatch(
       setSession({
-        imageId: imgID.toString(),
-        feeling: selectedEmotionId.toString(),
+        ...sessionSubscription,
+        imageEmotion: {
+          imageId: imgID.toString(),
+          emotion: selectedEmotionId.toString(),
+        }
       })
     );
     setSlide(slide + 1);
