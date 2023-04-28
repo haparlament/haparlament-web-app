@@ -130,13 +130,13 @@ function ChooseTime() {
     );
   };
 
-  const handleSubmit = (session: SessionSubscriptionData) => {
+  const handleSubmit = async (session: SessionSubscriptionData) => {
     console.log("handleSubmit", session);
     if (!session.timeAvailability.days || !session.timeAvailability.hoursRanges) {
       // TODO handle error
     } else {
-      postSessionRequest(session);
-      navigate("/emotions-selection");
+      await postSessionRequest(session);
+      // navigate("/emotions-selection"); // TODO navigate to success page
     }
   };
 

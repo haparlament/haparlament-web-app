@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import firestore from '../utils/firestore-client';
-import { validateDto } from '../services/validation-service';
+// import { validateDto } from '../services/validation-service';
 import { CreateSessionRequestDto } from '../dto/session-request';
 import logger from '../utils/logger';
-import { isEmpty } from 'lodash';
+// import { isEmpty } from 'lodash';
 import airtable from '../utils/airtable-client';
 import { config } from '../config';
 
@@ -27,46 +27,37 @@ export interface TimeRange {
     from: Time,
     to: Time
 }
-interface SessionSubscriptionData {
-    imageEmotion: {
-      imageId: string,
-      emotion: string,
-    },
-    timeAvailability: {
-      days: string[],
-      hoursRanges: TimeRange[],
-    },
-    user: {
-      name: string,
-      phoneNumber: string,
-    }
-}
+
 
 export const createSessionRequest = async (req: Request, res: Response) => {
     const {
-        user,
-        timeAvailability,
-        imageEmotion,
-    } = req.body as SessionSubscriptionData;
+        userName,
+        phoneNumber,
+        imageId,
+        emotion,
+        days,
+        hoursRanges
+    } = req.body;
     const now = new Date();
     const createsessionRequestDto = new CreateSessionRequestDto(
-        user.name,
-        imageEmotion.imageId,
-        imageEmotion.emotion,
-        user.phoneNumber,
-        timeAvailability.days,
-        timeAvailability.hoursRanges
+        userName,
+        imageId,
+        emotion,
+        phoneNumber,
+        days,
+        hoursRanges
     );
 
     // Due to some weird bug I can't set the below in the constructor so setting like this.
     createsessionRequestDto.createdAt = now;
     createsessionRequestDto.updatedAt = now;
+    // temp removal of validations 
 
-    const errors = await validateDto(createsessionRequestDto);
-    if (!isEmpty(errors)) {
-        logger.error(errors);
-        return res.status(400).json(errors);
-    }
+    // const errors = await validateDto(createsessionRequestDto);
+    // if (!isEmpty(errors)) {
+    //     logger.error(errors);
+    //     return res.status(400).json(errors);
+    // }
 
     try {
         await firestore.create(SESSION_REQUESTS, createsessionRequestDto.json());

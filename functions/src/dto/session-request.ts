@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsMobilePhone, IsDate } from 'class-validator';
+import { IsNotEmpty, IsString, IsDate } from 'class-validator';
 import { TimeRange } from '../controllers/session-request';
 
 /**
@@ -34,7 +34,7 @@ export class CreateSessionRequestDto {
         feeling: string;
 
     @IsNotEmpty()
-    @IsMobilePhone('he-IL')
+    // @IsMobilePhone('he-IL')
         phoneNumber: string;
 
     @IsNotEmpty()
