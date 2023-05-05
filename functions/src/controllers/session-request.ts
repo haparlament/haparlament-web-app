@@ -36,7 +36,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
         imageId,
         emotion,
         days,
-        hoursRanges
+        hoursRanges,
     } = req.body;
     const now = new Date();
     const createsessionRequestDto = new CreateSessionRequestDto(
@@ -51,7 +51,7 @@ export const createSessionRequest = async (req: Request, res: Response) => {
     // Due to some weird bug I can't set the below in the constructor so setting like this.
     createsessionRequestDto.createdAt = now;
     createsessionRequestDto.updatedAt = now;
-    // temp removal of validations 
+    // temp removal of validations
 
     // const errors = await validateDto(createsessionRequestDto);
     // if (!isEmpty(errors)) {

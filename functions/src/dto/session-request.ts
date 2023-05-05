@@ -40,14 +40,14 @@ export class CreateSessionRequestDto {
     @IsNotEmpty()
     @MaxLength(7, {
         each: true,
-      })        
-    days: string[];
+    })
+        days: string[];
 
     @IsNotEmpty()
     @MaxLength(10, {
         each: true,
-      })    
-    hoursRanges: TimeRange[];
+    })
+        hoursRanges: TimeRange[];
 
     @IsNotEmpty()
     @IsDate()
