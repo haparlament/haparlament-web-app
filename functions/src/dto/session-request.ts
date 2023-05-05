@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsDate } from 'class-validator';
+import { IsNotEmpty, IsString, IsDate, IsMobilePhone, MaxLength } from 'class-validator';
 import { TimeRange } from '../controllers/session-request';
 
 /**
@@ -34,15 +34,19 @@ export class CreateSessionRequestDto {
         feeling: string;
 
     @IsNotEmpty()
-    // @IsMobilePhone('he-IL')
+    @IsMobilePhone('he-IL')
         phoneNumber: string;
 
     @IsNotEmpty()
-    // @IsString()
-        days: string[];
+    @MaxLength(7, {
+        each: true,
+      })        
+    days: string[];
 
     @IsNotEmpty()
-    // @IsString()
+    @MaxLength(10, {
+        each: true,
+      })    
     hoursRanges: TimeRange[];
 
     @IsNotEmpty()
