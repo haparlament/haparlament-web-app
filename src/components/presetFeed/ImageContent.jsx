@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Feelings from "../presetFeed/Feelings";
 import SubmitFeelings from "./SubmitFeelings";
-import data from "../../data/data";
+import { emotionSelectionImages } from "../../data/data";
 import "../../styles.css/ImageContent.css";
 
 function ImageContent({ slide, setSlide }) {
-  const images = data.images;
-  const [imgURL, setImgURL] = useState(null);
+  const [imageIndex, setImgIndex] = useState(0);
+  const [imgURL, setImgURL] = useState(emotionSelectionImages[imageIndex].url);
 
-  const [imgID, setImgID] = useState(null);
+  const [imgID, setImgID] = useState(emotionSelectionImages[imageIndex].id);
   const [selectedEmotionId, setSelectedEmotionId] = useState(null);
 
-  function getRandomImgUrl(images) {
-    const randomIndex = Math.floor(Math.random() * images.length);
-    setImgID(randomIndex);
-    return images[randomIndex].url;
+  function setNextImage() {
+    const nextImageIndex = imageIndex < emotionSelectionImages.length - 1 ? imageIndex + 1 : 0;
+    setImgID(emotionSelectionImages[nextImageIndex].id);
+    setImgURL(emotionSelectionImages[nextImageIndex].url)
+    setImgIndex(nextImageIndex)
   }
 
-  useEffect(() => changeImg(), []);
-
-  const changeImg = () => {
-    setImgURL(getRandomImgUrl(images));
-  };
-
   const handlePass = () => {
-    changeImg();
+    setNextImage();
     setSelectedEmotionId(null);
   };
 

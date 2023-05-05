@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import firestore from '../utils/firestore-client';
-import { validateDto } from '../services/validation-service';
+// import { validateDto } from '../services/validation-service';
 import { CreateSessionRequestDto } from '../dto/session-request';
 import logger from '../utils/logger';
-import { isEmpty } from 'lodash';
+// import { isEmpty } from 'lodash';
 import airtable from '../utils/airtable-client';
 import { config } from '../config';
 
@@ -19,35 +19,45 @@ export const getAllSessionRequests = async (req: Request, res: Response) => {
         res.status(500);
     }
 };
+interface Time {
+    hour: number,
+    minute: number
+}
+export interface TimeRange {
+    from: Time,
+    to: Time
+}
+
 
 export const createSessionRequest = async (req: Request, res: Response) => {
     const {
         userName,
-        imageId,
-        feeling,
         phoneNumber,
-        day,
-        hourRange,
+        imageId,
+        emotion,
+        days,
+        hoursRanges
     } = req.body;
     const now = new Date();
     const createsessionRequestDto = new CreateSessionRequestDto(
         userName,
         imageId,
-        feeling,
+        emotion,
         phoneNumber,
-        day,
-        hourRange
+        days,
+        hoursRanges
     );
 
     // Due to some weird bug I can't set the below in the constructor so setting like this.
     createsessionRequestDto.createdAt = now;
     createsessionRequestDto.updatedAt = now;
+    // temp removal of validations 
 
-    const errors = await validateDto(createsessionRequestDto);
-    if (!isEmpty(errors)) {
-        logger.error(errors);
-        return res.status(400).json(errors);
-    }
+    // const errors = await validateDto(createsessionRequestDto);
+    // if (!isEmpty(errors)) {
+    //     logger.error(errors);
+    //     return res.status(400).json(errors);
+    // }
 
     try {
         await firestore.create(SESSION_REQUESTS, createsessionRequestDto.json());

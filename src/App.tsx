@@ -56,10 +56,7 @@ function App() {
             <Route
               path="/time-selection"
               element={
-                <ChooseTime
-                  setSlide={setSlide}
-                  slide={slide}
-                />
+                <ChooseTime />
               }
             />
             <Route
