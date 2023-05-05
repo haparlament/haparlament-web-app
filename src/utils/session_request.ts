@@ -5,7 +5,7 @@ const BASE_API_URL = 'https://us-central1-haparlament.cloudfunctions.net/api/v1'
 async function postData(url: string, data: string) {
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "no-cors", // no-cors, *cors, same-origin - TODO temporarily enabling this since the functions base url is currently different than the app url
+      mode: "cors", // no-cors, *cors, same-origin - TODO temporarily enabling this since the functions base url is currently different than the app url
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       //credentials: "same-origin", // include, *same-origin, omit
       headers: {
