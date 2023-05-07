@@ -19,15 +19,6 @@ export const getAllSessionRequests = async (req: Request, res: Response) => {
         res.status(500);
     }
 };
-interface Time {
-    hour: number,
-    minute: number
-}
-export interface TimeRange {
-    from: Time,
-    to: Time
-}
-
 
 export const createSessionRequest = async (req: Request, res: Response) => {
     const {
@@ -65,6 +56,6 @@ export const createSessionRequest = async (req: Request, res: Response) => {
         return res.status(200).json(createsessionRequestDto);
     } catch (error) {
         logger.error(error);
-        return res.status(500);
+        return res.status(500).json({});
     }
 };

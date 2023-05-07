@@ -9,7 +9,7 @@ import * as bodyParser from 'body-parser';
 import sessionRequestRoutes from './routes/api/session-request';
 
 const app: Express = express();
-app.use(cors({ origin: ['https://haparlament.web.app'] }));
+app.use(cors({ origin: ['https://haparlament.web.app', 'http://localhost:3000'] }));
 
 // app.use('/v1/user', userRoutes);
 // app.use('/v1/session', sessionRoutes);

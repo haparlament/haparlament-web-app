@@ -28,7 +28,7 @@ const HOURS_RANGES = {
       minute: 0
     },
     to: {
-      hour: 10,
+      hour: 12,
       minute: 0
     }
   },
