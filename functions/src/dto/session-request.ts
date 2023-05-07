@@ -62,7 +62,7 @@ export class CreateSessionRequestDto {
             feeling: this.feeling,
             phoneNumber: this.phoneNumber,
             days: this.days,
-            hoursRanges: this.hoursRanges,
+            availableHours: this.hoursRanges,
             updatedAt: this.updatedAt,
             createdAt: this.createdAt,
         };
