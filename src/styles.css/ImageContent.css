@@ -1,16 +1,15 @@
 .img-div{
   height: 50vh;
   margin-bottom: 1.5rem;
+  overflow: hidden;
 }
 
 img {
-  height: 50vh;
-  width: auto; 
-  max-width: 100%;
+  width: 100%; 
   display: block;
   margin: 0 auto;
-  background-size: center;
-  object-fit:cover;
+  background-size: cover;
+  background-position: center;
 }
 
 .img-content{
