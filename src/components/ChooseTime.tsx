@@ -136,7 +136,7 @@ function ChooseTime() {
       // TODO handle error
     } else {
       await postSessionRequest(session);
-      // navigate("/emotions-selection"); // TODO navigate to success page
+      navigate("/session-request-sent");
     }
   };
 

@@ -4,6 +4,9 @@ import DetailsForm from "./components/DetailsForm/DetailsForm";
 import ChooseTime from "./components/ChooseTime";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import ImageContent from "./components/presetFeed/ImageContent";
+import SessionSentMessage from "./components/pages/SessionSentMessage";
+
+
 import "./styles.css/App.scss";
 
 import { BrowserRouter } from "react-router-dom";
@@ -59,6 +62,13 @@ function App() {
                 <ChooseTime />
               }
             />
+            <Route
+              path="/session-request-sent"
+              element={
+                <SessionSentMessage />
+              }
+            />
+            
             <Route
               path="*"
               element={
