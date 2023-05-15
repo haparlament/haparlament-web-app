@@ -4,8 +4,7 @@ import "../../styles.css/DetailsForm.scss";
 import { LeftArrow } from "../../styles.css/icons.svg/icons";
 import { TwoLinesRight } from "../../styles.css/icons.svg/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { SessionSubscriptionData, selectSessionSubscription, setSession } from "../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
-import { postSessionRequest } from "../../utils/session_request";
+import { selectSessionSubscription, setSession } from "../../stateManagement/modules/sessionSubscription/sessionSubscriptionSlice";
 
 interface DetailsFormProps {
   setSlide: (slideIndex: number) => void, slide: number 
@@ -21,7 +20,8 @@ function DetailsForm({ setSlide, slide }: DetailsFormProps) {
   const [isUserNameValid, setIsUserNameValid] = useState(true);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
 
-  const handleSubmit = async (sessionSubscription: SessionSubscriptionData) => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     if (!checkUserNamevalid()) {
       setIsUserNameValid(false);
       return;
@@ -32,18 +32,17 @@ function DetailsForm({ setSlide, slide }: DetailsFormProps) {
       return;
     }
     setIsPhoneNumberValid(true);
-    const updatedSessionSubscription = {
-      ...sessionSubscription,
-      user: {
-        phoneNumber,
-        name: userName,
-      }
-    }
     dispatch(
-      setSession(updatedSessionSubscription)
+      setSession({
+        ...sessionSubscription,
+        user: {
+          phoneNumber: phoneNumber,
+          name: userName,
+        }
+      })
     );
-    await postSessionRequest(updatedSessionSubscription);
-    navigate("/session-request-sent");  
+    setSlide(slide + 1);
+    navigate("/time-selection");
   };
 
   const checkPhoneNumbervalid = () => {
@@ -62,7 +61,7 @@ function DetailsForm({ setSlide, slide }: DetailsFormProps) {
         <h1>בואו נדבר</h1>
         <h4>מלא פרטים כדי שנוכל ליצור איתך קשר</h4>
       </div>
-      <form className="details-form-form" onSubmit={() => handleSubmit(sessionSubscription)}>
+      <form className="details-form-form" onSubmit={handleSubmit}>
         <input
           id="name"
           className="deatils-inputs"
@@ -88,22 +87,12 @@ function DetailsForm({ setSlide, slide }: DetailsFormProps) {
         )}
         <br />
       </form>
-      <div className="send-details-div">
-        <button
-          className="send-details-button"
-          type="submit"
-          onClick={() => handleSubmit(sessionSubscription)}
-        >
-          שלח פרטים
-        </button>
-      </div>
-
-      {/* <div className="icons-div">
+      <div className="icons-div">
         <button type="submit" onClick={handleSubmit}>
           {LeftArrow}
         </button>
         <button>{TwoLinesRight}</button>
-      </div> */}
+      </div>
     </div>
   );
 }
