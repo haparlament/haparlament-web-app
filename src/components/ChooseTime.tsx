@@ -1,3 +1,5 @@
+/// <reference path="../custom-modules.d.ts" />
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../src/styles.css/ChooseTime.css";
@@ -5,6 +7,9 @@ import { TwoLinesLeft } from "../styles.css/icons.svg/icons";
 import { postSessionRequest } from "../utils/session_request";
 import { useDispatch, useSelector } from "react-redux";
 import { DAYS_OF_WEEK } from "../constants";
+import moonIcon from "../styles.css/images/moonIcon.png";
+import sunIcon from "../styles.css/images/sunIcon.png";
+
 import {
   selectSessionSubscription,
   setSession,
@@ -23,6 +28,7 @@ type HoursRangeInfo = {hour: HoursRange, isPressed: boolean}
 const HOURS_RANGES = {
   MORNING: {
     text: "בוקר",
+    icon: sunIcon,
     from: {
       hour: 10,
       minute: 0
@@ -34,6 +40,7 @@ const HOURS_RANGES = {
   },
   EVENING: {
     text: "ערב",
+    icon: moonIcon,
     from: {
       hour: 20,
       minute: 0
@@ -159,6 +166,7 @@ function ChooseTime() {
                 onClick={() => handleHour(i)}
               >
                 {hourRange.hour.text}
+                <img className="time-icon" src={hourRange.hour.icon} alt="" />
               </button>
             ))}
           </div>
