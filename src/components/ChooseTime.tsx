@@ -22,7 +22,7 @@ type HoursRangeInfo = {hour: HoursRange, isPressed: boolean}
 
 const HOURS_RANGES = {
   MORNING: {
-    text: "בוקר 10:00-12:00",
+    text: "בוקר",
     from: {
       hour: 10,
       minute: 0
@@ -32,30 +32,8 @@ const HOURS_RANGES = {
       minute: 0
     }
   },
-  NOON: {
-    text: "צהריים 14:00-16:00",
-    from: {
-      hour: 14,
-      minute: 0
-    },
-    to: {
-      hour: 16,
-      minute: 0
-    }
-  },
   EVENING: {
-    text: "ערב 18:00-20:00",
-    from: {
-      hour: 18,
-      minute: 0
-    },
-    to: {
-      hour: 20,
-      minute: 0
-    }
-  },
-  NIGHT: {
-    text: "לילה 20:00-22:00",
+    text: "ערב",
     from: {
       hour: 20,
       minute: 0
@@ -84,15 +62,15 @@ function ChooseTime() {
 
   const [hoursRanges, setHoursRanges] = useState([
     { hour: HOURS_RANGES.MORNING, isPressed: false },
-    { hour: HOURS_RANGES.NOON, isPressed: false },
     { hour: HOURS_RANGES.EVENING, isPressed: false },
-    { hour: HOURS_RANGES.NIGHT, isPressed: false },
   ]);
 
-  function getTimeAvailability(daysArr: Array<DayInfo>, hoursRanges: Array<HoursRangeInfo>): SessionSubscriptionData['timeAvailability'] {
+  function getTimeAvailability(
+    daysArr: Array<DayInfo>, 
+    hoursRanges: Array<HoursRangeInfo>): SessionSubscriptionData['timeAvailability'] {
     return {
       days: daysArr
-        .filter(dayObj => dayObj.isPressed)
+        // .filter(dayObj => dayObj.isPressed)
         .map(dayObj => dayObj.day),
       hoursRanges: hoursRanges
         .filter(hourObj => hourObj.isPressed)
@@ -100,20 +78,20 @@ function ChooseTime() {
     }
   }
 
-  const handleDay = (index: number) => {
-    const newDaysArr = [...days];
-    newDaysArr[index] = {
-      ...newDaysArr[index],
-      isPressed: !newDaysArr[index].isPressed,
-    };
-    setDays(newDaysArr);
-    dispatch(
-      setSession({
-        ...sessionSubscription,
-        timeAvailability: getTimeAvailability(newDaysArr, hoursRanges)
-      })
-    );
-  };
+  // const handleDay = (index: number) => {
+  //   const newDaysArr = [...days];
+  //   newDaysArr[index] = {
+  //     ...newDaysArr[index],
+  //     isPressed: !newDaysArr[index].isPressed,
+  //   };
+  //   setDays(newDaysArr);
+  //   dispatch(
+  //     setSession({
+  //       ...sessionSubscription,
+  //       timeAvailability: getTimeAvailability(newDaysArr, hoursRanges)
+  //     })
+  //   );
+  // };
 
   const handleHour = (index: number) => {
     const newHoursArr = [...hoursRanges];
@@ -125,14 +103,18 @@ function ChooseTime() {
     dispatch(
       setSession({
         ...sessionSubscription,
-        timeAvailability: getTimeAvailability(days, newHoursArr)
+        timeAvailability: getTimeAvailability(
+          days, 
+          newHoursArr)
       })
     );
   };
 
   const handleSubmit = async (session: SessionSubscriptionData) => {
     console.log("handleSubmit", session);
-    if (!session.timeAvailability.days || !session.timeAvailability.hoursRanges) {
+    if (
+      // !session.timeAvailability.days || 
+      !session.timeAvailability.hoursRanges) {
       // TODO handle error
     } else {
       await postSessionRequest(session);
@@ -150,7 +132,7 @@ function ChooseTime() {
         </h4>
       </div>
       <div>
-        <div className="days-div">
+        {/* <div className="days-div">
           <span className="time-header">ימים</span>
           <div className="time-buttons-div">
             {days.map((day, i) => (
@@ -165,9 +147,8 @@ function ChooseTime() {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
         <div className="days-div">
-          <span className="time-header">שעות</span>
           <div className="time-buttons-div">
             {hoursRanges.map((hourRange, i) => (
               <button
