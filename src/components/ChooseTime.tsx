@@ -79,29 +79,12 @@ function ChooseTime() {
     daysArr: Array<DayInfo>, 
     hoursRanges: Array<HoursRangeInfo>): SessionSubscriptionData['timeAvailability'] {
     return {
-      days: daysArr
-        // .filter(dayObj => dayObj.isPressed)
-        .map(dayObj => dayObj.day),
+      days: daysArr.map(dayObj => dayObj.day),
       hoursRanges: hoursRanges
         .filter(hourObj => hourObj.isPressed)
         .map(hourObj => ({from: hourObj.hour.from, to: hourObj.hour.to}))
     }
   }
-
-  // const handleDay = (index: number) => {
-  //   const newDaysArr = [...days];
-  //   newDaysArr[index] = {
-  //     ...newDaysArr[index],
-  //     isPressed: !newDaysArr[index].isPressed,
-  //   };
-  //   setDays(newDaysArr);
-  //   dispatch(
-  //     setSession({
-  //       ...sessionSubscription,
-  //       timeAvailability: getTimeAvailability(newDaysArr, hoursRanges)
-  //     })
-  //   );
-  // };
 
   const handleHour = (index: number) => {
     const newHoursArr = [...hoursRanges];
@@ -122,9 +105,7 @@ function ChooseTime() {
 
   const handleSubmit = async (session: SessionSubscriptionData) => {
     console.log("handleSubmit", session);
-    if (
-      // !session.timeAvailability.days || 
-      !session.timeAvailability.hoursRanges) {
+    if (!session.timeAvailability.hoursRanges) {
       // TODO handle error
     } else {
       await postSessionRequest(session);
@@ -142,22 +123,6 @@ function ChooseTime() {
         </h4>
       </div>
       <div>
-        {/* <div className="days-div">
-          <span className="time-header">ימים</span>
-          <div className="time-buttons-div">
-            {days.map((day, i) => (
-              <button
-                className={`time-button ${
-                  day.isPressed ? "time-button-pressed" : null
-                }`}
-                key={i}
-                onClick={() => handleDay(i)}
-              >
-                {day.text}
-              </button>
-            ))}
-          </div>
-        </div> */}
         <div className="days-div">
           <div className="time-buttons-div">
             {hoursRanges.map((hourRange, i) => (
