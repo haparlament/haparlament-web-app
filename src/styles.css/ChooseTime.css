@@ -81,3 +81,7 @@
   font-size: 1rem;
 }
 
+.send-details-button:disabled{
+  background: #464646;
+  color: rgb(190, 190, 190);
+}

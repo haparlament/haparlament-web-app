@@ -7,6 +7,8 @@ import { TwoLinesLeft } from "../styles.css/icons.svg/icons";
 import { postSessionRequest } from "../utils/session_request";
 import { useDispatch, useSelector } from "react-redux";
 import { DAYS_OF_WEEK } from "../constants";
+import LoadingSubmitButton from "./LoadingSubmitButton/LoadingSubmitButton";
+
 import moonIcon from "../styles.css/images/moonIcon.png";
 import sunIcon from "../styles.css/images/sunIcon.png";
 
@@ -55,6 +57,7 @@ const HOURS_RANGES = {
 function ChooseTime() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);  
   const sessionSubscription = useSelector(selectSessionSubscription);
 
   const [days, setDays] = useState([
@@ -159,9 +162,8 @@ function ChooseTime() {
           <div className="time-buttons-div">
             {hoursRanges.map((hourRange, i) => (
               <button
-                className={`time-button ${
-                  hourRange.isPressed ? "time-button-pressed" : null
-                }`}
+                className={`time-button ${hourRange.isPressed ? "time-button-pressed" : null
+                  }`}
                 key={i}
                 onClick={() => handleHour(i)}
               >
@@ -174,13 +176,18 @@ function ChooseTime() {
       </div>
 
       <div className="send-details-div">
-        <button
+        <LoadingSubmitButton
           className="send-details-button"
-          type="submit"
-          onClick={() => handleSubmit(sessionSubscription)}
+          onClick={!isSubmitting ? () => {
+            setIsSubmitting(true)
+            handleSubmit(sessionSubscription)
+          } : undefined
+          }
+          isLoading={isSubmitting}
+          disabled={getTimeAvailability(days, hoursRanges).hoursRanges.length === 0}
         >
           שלח פרטים
-        </button>
+        </LoadingSubmitButton>
         <button>{TwoLinesLeft}</button>
       </div>
     </div>
