@@ -1,0 +1,26 @@
+.success-icon {
+    margin-top: 20.5vh;
+    max-height: 9%;
+}
+
+.session-sent-message-headers {
+    margin-top: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    gap: 10px;
+    width: 75%;
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h4 {
+        margin-top: 1.5vh;
+        text-align: center;
+        font-weight: lighter;
+        font-size: 1.2rem;
+    }
+}
