@@ -1,6 +1,6 @@
 
 .mb{
-  margin-bottom: 7vh;
+  margin-bottom: 6vh;
 }
 
 .days-div{
@@ -12,13 +12,18 @@
 
 .time-buttons-div{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 7px;
+  gap: 20px;
   direction: rtl;
+}
+
+.time-icon {
+  max-width: 100%;
+  max-height: 90%;
 }
 
 .time-button{
@@ -31,13 +36,13 @@
   direction: rtl;
   padding: 4px 18px;
   gap: 6px;
-  width: 80px;
-  height: 34px;
+  width: 230px;
+  height: 90px;
   background: #FFFFFF;
   border-radius: 22px;
-  width: fit-content;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 24px;
+  justify-content: space-around;
 }
 
 .time-button-pressed{
@@ -55,7 +60,7 @@
 .send-details-div{
   display: flex;
   flex-direction: row;
-  margin-top: 5vh;
+  margin-top: 18.5vh;
   justify-content: space-around;
   align-items: center;
   width: 105%;
@@ -67,11 +72,16 @@
   justify-content: center;
   align-items: center;
   padding: 15px 20px;
-  width: 130px;
-  height: 56px;
+  width: 120px;
+  height: 45px;
+  margin-right: -5px;
   background: #222222;
   border-radius: 16px;
   color: white;
   font-size: 1rem;
 }
 
+.send-details-button:disabled{
+  background: #464646;
+  color: rgb(190, 190, 190);
+}

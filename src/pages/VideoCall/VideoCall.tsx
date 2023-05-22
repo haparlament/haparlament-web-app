@@ -206,7 +206,7 @@ function VideoCall() {
   };
 
   return (
-    <div className="app">
+    <div className="video-call">
       {renderApp()}
     </div>
   );
