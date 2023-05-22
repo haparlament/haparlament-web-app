@@ -3,7 +3,7 @@ export function roomUrlFromPageUrl() {
     return match && match[1] ? decodeURIComponent(match[1]) : null;
   }
   
-  export function pageUrlFromRoomUrl(roomUrl: string) {
+  export function pageUrlFromRoomUrl(roomUrl: string | null) {
     return (
       window.location.href.split('?')[0] + (roomUrl ? `?roomUrl=${encodeURIComponent(roomUrl)}` : '')
     );

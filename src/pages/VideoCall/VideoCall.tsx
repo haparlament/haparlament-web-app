@@ -9,7 +9,6 @@ import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from './../../services/video/u
 
 import HomeScreen from './components/HomeScreen';
 import Call from './components/Call';
-import Header from './components/Header';
 import Tray from './components/Tray';
 import HairCheck from './components/HairCheck';
 
@@ -24,8 +23,8 @@ const STATE_HAIRCHECK = 'STATE_HAIRCHECK';
 
 function VideoCall() {
   const [appState, setAppState] = useState(STATE_IDLE);
-  const [roomUrl, setRoomUrl] = useState(null);
-  const [callObject, setCallObject] = useState(null);
+  const [roomUrl, setRoomUrl] = useState(null as string | null);
+  const [callObject, setCallObject] = useState(null as any);
   const [apiError, setApiError] = useState(false);
 
   /**
@@ -49,7 +48,7 @@ function VideoCall() {
   /**
    * We've created a room, so let's start the hair check. We won't be joining the call yet.
    */
-  const startHairCheck = useCallback(async (url) => {
+  const startHairCheck = useCallback(async (url: string) => {
     const newCallObject = DailyIframe.createCallObject();
     setRoomUrl(url);
     setCallObject(newCallObject);
@@ -102,7 +101,7 @@ function VideoCall() {
   useEffect(() => {
     const pageUrl = pageUrlFromRoomUrl(roomUrl);
     if (pageUrl === window.location.href) return;
-    window.history.replaceState(null, null, pageUrl);
+    window.history.replaceState(null, '', pageUrl);
   }, [roomUrl]);
 
   /**
@@ -208,7 +207,6 @@ function VideoCall() {
 
   return (
     <div className="app">
-      <Header />
       {renderApp()}
     </div>
   );

@@ -1,9 +1,9 @@
 import React from 'react';
-import './HomeScreen.css';
+import './HomeScreen.scss';
 
-export default function HomeScreen({ createCall, startHairCheck }) {
+export default function HomeScreen({ createCall, startHairCheck }: any) {
   const startDemo = () => {
-    createCall().then((url) => {
+    createCall().then((url: string) => {
       startHairCheck(url);
     });
   };
