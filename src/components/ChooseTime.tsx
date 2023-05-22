@@ -32,11 +32,11 @@ const HOURS_RANGES = {
     text: "בוקר",
     icon: sunIcon,
     from: {
-      hour: 10,
+      hour: 8,
       minute: 0
     },
     to: {
-      hour: 12,
+      hour: 14,
       minute: 0
     }
   },
@@ -44,7 +44,7 @@ const HOURS_RANGES = {
     text: "ערב",
     icon: moonIcon,
     from: {
-      hour: 20,
+      hour: 14,
       minute: 0
     },
     to: {
@@ -60,7 +60,7 @@ function ChooseTime() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);  
   const sessionSubscription = useSelector(selectSessionSubscription);
 
-  const [days, setDays] = useState([
+  const [days] = useState([
     { day: DAYS_OF_WEEK.SUNDAY, text: 'ראשון', isPressed: false },
     { day: DAYS_OF_WEEK.MONDAY, text: 'שני', isPressed: false },
     { day: DAYS_OF_WEEK.TUESDAY, text: 'שלישי', isPressed: false },
