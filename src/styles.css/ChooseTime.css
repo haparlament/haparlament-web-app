@@ -22,8 +22,13 @@
 }
 
 .time-icon {
-  max-width: 100%;
   max-height: 90%;
+  width: 40px;
+  margin-left: 20px;
+}
+
+.time-button-pressed .time-icon {
+  filter:invert(1);
 }
 
 .time-button{
@@ -36,13 +41,14 @@
   direction: rtl;
   padding: 4px 18px;
   gap: 6px;
-  width: 230px;
-  height: 90px;
+  width: 342px;
+  height: 110px;
   background: #FFFFFF;
   border-radius: 22px;
-  font-size: 22px;
+  font-size: 40px;
   line-height: 24px;
-  justify-content: space-around;
+  justify-content: center;
+  font-weight: 700;
 }
 
 .time-button-pressed{
@@ -60,7 +66,7 @@
 .send-details-div{
   display: flex;
   flex-direction: row;
-  margin-top: 18.5vh;
+  margin-top: 16.5vh;
   justify-content: space-around;
   align-items: center;
   width: 105%;

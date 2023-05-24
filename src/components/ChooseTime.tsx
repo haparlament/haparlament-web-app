@@ -1,16 +1,11 @@
-/// <reference path="../custom-modules.d.ts" />
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../src/styles.css/ChooseTime.css";
-import { TwoLinesLeft } from "../styles.css/icons.svg/icons";
+import { TwoLinesLeft, MoonIcon, SunIcon } from "../styles.css/icons.svg/icons";
 import { postSessionRequest } from "../utils/session_request";
 import { useDispatch, useSelector } from "react-redux";
 import { DAYS_OF_WEEK } from "../constants";
 import LoadingSubmitButton from "./LoadingSubmitButton/LoadingSubmitButton";
-
-import moonIcon from "../styles.css/images/moonIcon.png";
-import sunIcon from "../styles.css/images/sunIcon.png";
 
 import {
   selectSessionSubscription,
@@ -29,8 +24,8 @@ type HoursRangeInfo = {hour: HoursRange, isPressed: boolean}
 
 const HOURS_RANGES = {
   MORNING: {
-    text: "בוקר",
-    icon: sunIcon,
+    text: "בבוקר",
+    icon: SunIcon,
     from: {
       hour: 10,
       minute: 0
@@ -41,8 +36,8 @@ const HOURS_RANGES = {
     }
   },
   EVENING: {
-    text: "ערב",
-    icon: moonIcon,
+    text: "בערב",
+    icon: MoonIcon,
     from: {
       hour: 20,
       minute: 0
@@ -125,15 +120,17 @@ function ChooseTime() {
       <div>
         <div className="days-div">
           <div className="time-buttons-div">
-            {hoursRanges.map((hourRange, i) => (
+            {hoursRanges.map(({isPressed, hour}, i) => (
               <button
-                className={`time-button ${hourRange.isPressed ? "time-button-pressed" : null
+                className={`time-button ${isPressed ? "time-button-pressed" : null
                   }`}
                 key={i}
                 onClick={() => handleHour(i)}
               >
-                {hourRange.hour.text}
-                <img className="time-icon" src={hourRange.hour.icon} alt="" />
+                <div className="time-icon">
+                  {hour.icon}
+                </div>
+                {hour.text}
               </button>
             ))}
           </div>
