@@ -6,11 +6,11 @@ import { DailyProvider } from '@daily-co/daily-react-hooks';
 
 import api from './../../services/video/api';
 import { roomUrlFromPageUrl, pageUrlFromRoomUrl } from './../../services/video/utils';
-
 import HomeScreen from './components/HomeScreen';
 import Call from './components/Call';
 import Tray from './components/Tray';
 import HairCheck from './components/HairCheck';
+import Instructions from "./components/Instructions";
 
 /* We decide what UI to show to users based on the state of the app, which is dependent on the state of the call object. */
 const STATE_IDLE = 'STATE_IDLE';
@@ -120,6 +120,7 @@ function VideoCall() {
     function handleNewMeetingState() {
       switch (callObject.meetingState()) {
         case 'joined-meeting':
+          console.log('STATE_JOINED')
           setAppState(STATE_JOINED);
           break;
         case 'left-meeting':
@@ -197,6 +198,7 @@ function VideoCall() {
         <DailyProvider callObject={callObject}>
           <Call />
           <Tray leaveCall={startLeavingCall} />
+          <Instructions />
         </DailyProvider>
       );
     }

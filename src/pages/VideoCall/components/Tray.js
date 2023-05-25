@@ -5,6 +5,7 @@ import {
   useLocalParticipant,
   useVideoTrack,
   useAudioTrack,
+  useParticipantIds,
   useDailyEvent,
 } from '@daily-co/daily-react-hooks';
 
@@ -27,7 +28,8 @@ import {
 export default function Tray({ leaveCall }) {
   const callObject = useDaily();
   const { isSharingScreen, startScreenShare, stopScreenShare } = useScreenShare();
-
+  const allParticipants = useParticipantIds()?.toString();
+  console.log('allParticipants', allParticipants);
   const [showMeetingInformation, setShowMeetingInformation] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [newChatMessage, setNewChatMessage] = useState(false);

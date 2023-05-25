@@ -7,7 +7,7 @@ export default function MeetingInformation() {
   const room = useRoom();
   const network = useNetwork();
   const allParticipants = useParticipantIds()?.toString();
-
+  console.log('allParticipants', allParticipants);
   return (
     <section className="meeting-information">
       <h1>Meeting information</h1>
