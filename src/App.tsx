@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import {
   selectPopupInfo
 } from "./stateManagement/modules/popupInfo/popupInfoSlice";
+import VideoCall from "./pages/VideoCall/VideoCall";
 
 
 function App() {
@@ -68,7 +69,12 @@ function App() {
                 <SessionSentMessage />
               }
             />
-            
+            <Route
+              path="/video-call"
+              element={
+                <VideoCall />
+              }
+            />
             <Route
               path="*"
               element={
